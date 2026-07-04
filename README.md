@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # BattleStation System
 
 > A complete, modular robot combat event management system.
@@ -14,7 +13,3 @@ BattleStation is designed to automate robot combat tournaments while providing a
 ## Vision
 
 BattleStation should look, feel, and operate like a commercial event management system—not a DIY electronics project.
-=======
-# BattleStation
-File system for the BattleStation design and engineering. To be used at the annual Battle of Bots (BOB) competition.
->>>>>>> 32afa3f321c6085fab8ec06680a3eb8f70b7c78d
