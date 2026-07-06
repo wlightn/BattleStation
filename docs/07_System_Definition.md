@@ -190,3 +190,5 @@ Future Vision guides long-term architectural decisions while avoiding feature cr
 # Project Goal
 
 BattleStation System Version 1.0 is considered successful when it can operate the complete Battle of Bots tournament from registration through awards without requiring paper brackets or spreadsheets while providing a professional, reliable experience for organizers, competitors, and spectators.
+
+"BattleStation should look, feel, and operate like a commercial event management system."
