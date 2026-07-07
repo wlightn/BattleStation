@@ -109,3 +109,11 @@ over a single high-speed connection.
 ### Decision Deferred
 
 Final selection will be made before software implementation begins after hardware, software, and networking requirements have been fully evaluated.
+
+### Startup Requirement
+
+The BattleStation Server must operate headless in production.
+
+On power-up, the server shall automatically boot Linux and start all required BattleStation services without requiring keyboard, mouse, or monitor input.
+
+The system shall provide maintenance access through SSH, local web interface, or direct keyboard/monitor only when needed.
