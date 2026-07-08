@@ -158,3 +158,15 @@ Every software module:
 - Can be tested independently.
 - Uses documented interfaces.
 - Can be upgraded without affecting unrelated modules.
+
+## Learning Approach
+
+BattleStation will be developed one module at a time.
+
+Each software module should be small enough to understand, test, and maintain independently.
+
+Development will prioritize clarity over cleverness.
+
+No code should be added to the project until its purpose and behavior are understood.
+
+The architecture may be professional, but implementation will be approached in small, teachable steps.
