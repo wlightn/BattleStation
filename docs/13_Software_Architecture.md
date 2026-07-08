@@ -1,6 +1,15 @@
 # BattleStation Software Architecture
 
-## Purpose
+| Item | Value |
+|------|-------|
+| Document | Software Architecture |
+| Version | 0.2 |
+| Status | Reviewed |
+| Last Updated | 2026-07-07 |
+
+---
+
+# Purpose
 
 This document defines the software architecture of the BattleStation System.
 
@@ -10,156 +19,7 @@ The software architecture follows the same modular philosophy as the hardware ar
 
 ---
 
-# Core Software Modules
-
-## Tournament Manager
-
-Responsibilities
-
-- Create events
-- Open/close tournaments
-- Tournament state
-- Overall workflow
-
----
-
-## Registration Manager
-
-Responsibilities
-
-- Driver registration
-- Robot registration
-- Photos
-- Check-in
-
----
-
-## Inspection Manager
-
-Responsibilities
-
-- Inspection status
-- Weight
-- Rule compliance
-- Approval
-
----
-
-## Bracket Manager
-
-Responsibilities
-
-- Generate brackets
-- Advance winners
-- Advance losers
-- Determine next match
-
----
-
-## Match Engine
-
-Responsibilities
-
-- Match state machine
-- Timer
-- Ready state
-- Pause
-- Resume
-- Result recording
-
----
-
-## Safety Manager
-
-Responsibilities
-
-- Door monitoring
-- Emergency stop
-- Safety logging
-- Safety state
-
----
-
-## Hardware Interface
-
-Responsibilities
-
-- BattleStation Bus
-- Module communications
-- Health monitoring
-- Device discovery
-
----
-
-## Web Server
-
-Responsibilities
-
-- Coordinator interface
-- Registration interface
-- Inspection interface
-- Public display
-- API
-
----
-
-## Database Manager
-
-Responsibilities
-
-- Store tournament data
-- Drivers
-- Robots
-- Matches
-- Events
-- Statistics
-
----
-
-## Reporting Manager
-
-Responsibilities
-
-- Reports
-- Brackets
-- Results
-- Exports
-
----
-
-## Configuration Manager
-
-Responsibilities
-
-- Classes
-- Arena settings
-- Match duration
-- System configuration
-
----
-
-## System Monitor
-
-Responsibilities
-
-- Module health
-- CPU usage
-- Memory
-- Logging
-- Diagnostics
-
----
-
-# Design Principles
-
-Every software module:
-
-- Has a single responsibility.
-- Can be tested independently.
-- Uses documented interfaces.
-- Can be upgraded without affecting unrelated modules.
-
-## Learning Approach
+# Learning Approach
 
 BattleStation will be developed one module at a time.
 
@@ -171,6 +31,8 @@ No code should be added to the project until its purpose and behavior are unders
 
 The architecture may be professional, but implementation will be approached in small, teachable steps.
 
+---
+
 # Core Software Modules
 
 ## Tournament Manager
@@ -180,9 +42,10 @@ Responsible for overall event flow.
 Responsibilities:
 
 - Create and load events
+- Open and close tournaments
 - Track tournament status
 - Coordinate registration, inspection, brackets, matches, awards, and reports
-- Maintain the high-level tournament workflow
+- Maintain the overall tournament workflow
 
 ---
 
@@ -195,37 +58,38 @@ Responsibilities:
 - Create driver records
 - Create robot records
 - Support multiple robots per driver
-- Store robot photos
-- Store weapon type and weight information
-- Support future returning robot lookup
+- Store robot photographs
+- Store weapon type information
+- Store robot weight
+- Support future returning competitor and robot lookup
 
 ---
 
 ## Inspection Manager
 
-Responsible for event-day approval.
+Responsible for robot inspection and approval.
 
 Responsibilities:
 
 - Record official weight
-- Warn when weight exceeds class limit
-- Record safety inspection status
-- Record class-specific inspection status
-- Prevent unapproved robots from entering brackets
+- Warn when weight exceeds class limits
+- Record inspection status
+- Record class-specific inspection requirements
+- Prevent unapproved robots from entering tournament brackets
 
 ---
 
 ## Bracket Manager
 
-Responsible for tournament bracket logic.
+Responsible for tournament bracket management.
 
 Responsibilities:
 
 - Generate double-elimination brackets
 - Randomize initial matchups
-- Assign byes when needed
+- Assign byes when required
 - Advance winners
-- Move losers into the correct bracket
+- Advance losers
 - Determine current and next matches
 
 ---
@@ -236,25 +100,26 @@ Responsible for match operation.
 
 Responsibilities:
 
-- Enforce the match state machine
-- Control match timer
+- Execute the Match State Machine
+- Control the official match timer
 - Track driver ready status
 - Handle pause and resume
-- Track unsticks
-- Handle tap out
-- Record match result
+- Track unstick usage
+- Process Tap Out events
+- Record match results
 
 ---
 
 ## Safety Manager
 
-Responsible for safety-related system behavior.
+Responsible for all safety-related system behavior.
 
 Responsibilities:
 
 - Monitor arena door status
+- Process Emergency Stop events
 - Trigger Safety Stop
-- Activate alarms and beacon outputs
+- Activate alarms and warning beacons
 - Log safety events
 - Prevent unsafe match operation
 
@@ -262,30 +127,32 @@ Responsibilities:
 
 ## Hardware Interface
 
-Responsible for communication with physical BattleStation modules.
+Responsible for communication with BattleStation hardware modules.
 
 Responsibilities:
 
 - Communicate with the BattleStation Core Controller
-- Read driver station inputs
-- Read referee station inputs
+- Interface with the BattleStation Bus
+- Read Driver Station inputs
+- Read Referee Station inputs
 - Monitor module health
-- Send lighting, alarm, and status commands
-- Abstract hardware details from the rest of the software
+- Send commands to lighting, alarms, and status indicators
+- Abstract hardware communication from higher-level software
 
 ---
 
 ## Web Server
 
-Responsible for browser-based user interfaces.
+Provides the browser-based user interfaces.
 
-Interfaces:
+Provides the following interfaces:
 
-- Coordinator interface
-- Registration interface
-- Inspection interface
-- Public display
-- Future maintenance interface
+- Coordinator Station
+- Registration Station
+- Inspection Station
+- Public Display
+- Future Maintenance Interface
+- Future Administrative Interface
 
 ---
 
@@ -295,20 +162,22 @@ Responsible for persistent data storage.
 
 Responsibilities:
 
-- Store events
-- Store drivers
-- Store robots
-- Store classes
-- Store inspections
-- Store matches
-- Store logs
-- Store reports
+- Events
+- Drivers
+- Robots
+- Tournament Classes
+- Inspections
+- Matches
+- Tournament Results
+- System Logs
+- Reports
+- Future Career Statistics
 
 ---
 
 ## Reporting Manager
 
-Responsible for generated outputs.
+Responsible for generating tournament output.
 
 Responsibilities:
 
@@ -316,35 +185,65 @@ Responsibilities:
 - Completed brackets
 - Match history
 - Event archive
+- Tournament reports
 - Future recap packages
 
 ---
 
 ## Configuration Manager
 
-Responsible for configurable system settings.
+Responsible for system configuration.
 
 Responsibilities:
 
 - Event settings
-- Weight classes
+- Tournament classes
 - Match duration
 - Arena reset timer
 - Inspection templates
-- Network settings
-- Module settings
+- Network configuration
+- Module configuration
+- System preferences
 
 ---
 
 ## System Monitor
 
-Responsible for diagnostics and health reporting.
+Responsible for diagnostics and system health.
 
 Responsibilities:
 
-- Server health
-- Core controller health
+- BattleStation Server health
+- BattleStation Core Controller health
 - Module health
 - Network status
+- CPU usage
+- Memory usage
 - Error reporting
-- Startup checks
+- Startup diagnostics
+- System logging
+
+---
+
+# Design Principles
+
+Every software module shall:
+
+- Have a single responsibility.
+- Be independently testable.
+- Use documented interfaces.
+- Be replaceable without affecting unrelated modules.
+- Support future expansion.
+- Maintain separation between business logic and hardware communication.
+
+---
+
+# Related Documents
+
+- 04_System_Modules.md
+- 05_Tournament_Workflow.md
+- 06_Match_State_Machine.md
+- 07_System_Definition.md
+- 08_Requirements_Specification.md
+- 09_Decision_Log.md
+- 17_Design_Principles.md
