@@ -70,6 +70,18 @@ Chapter 1 succeeds only when:
 
 BattleStation uses two reviews because architecture quality and documentation quality are different engineering concerns.
 
+# Review Integrity
+
+The purpose of an architecture review is to evaluate a known, valid engineering baseline.
+
+A review performed against an incomplete, corrupted, or invalid repository baseline cannot produce valid engineering conclusions.
+
+If a review-blocking defect is discovered, the current review shall be suspended until the repository has been corrected and a new baseline established.
+
+Review findings produced after discovery of an invalid baseline shall not be considered valid.
+
+The corrected repository shall become the new review baseline before the affected review is restarted.
+
 ## Architecture Quality
 
 Architecture quality asks:
@@ -207,6 +219,36 @@ Minor findings may be corrected during closeout.
 
 A recommendation, future improvement, or non-blocking note that does not require immediate action.
 
+# ER-1 Review Continuity
+
+The Engineer is responsible for validating the architecture itself.
+
+If The Engineer discovers a condition that prevents meaningful continuation of the review, the review shall be suspended.
+
+Examples include:
+
+- Missing foundational documents
+- Empty master documents
+- Repository corruption
+- Broken document numbering
+- Missing required cross-references
+- Contradictory repository structure
+- Any defect that prevents reliable interpretation of subsequent documents
+
+When a review-blocking defect is discovered, The Engineer shall:
+
+1. Record the finding.
+2. Classify the finding.
+3. Suspend the affected review.
+4. Regenerate or repair the complete master document(s).
+5. Review the regenerated document(s).
+6. Commit the corrections.
+7. Establish a new Git review baseline.
+8. Restart the affected review section.
+
+Engineering conclusions produced after discovery of an invalid baseline shall be discarded.
+
+The review shall continue only after the corrected repository has become the new official review baseline.
 ---
 
 # ER-1 — Engineering Review
@@ -768,6 +810,28 @@ Between ER-1 and BR-1:
 - The Git working tree shall be clean.
 - The review commit shall be recorded.
 - Repository access shall be prepared for Junior Engineer #1.
+
+# BR-1 Review Continuity
+
+Junior Engineer #1 evaluates only the committed repository.
+
+Junior Engineer #1 has no authority to repair, regenerate, redesign, or reinterpret the repository.
+
+If a review-blocking defect is discovered, Junior Engineer #1 shall:
+
+- Record the finding.
+- Stop the review at the affected point.
+- Return the repository for Engineering Review correction.
+
+Junior Engineer #1 shall not:
+
+- infer missing behavior,
+- request undocumented explanations,
+- regenerate missing documents,
+- redesign architecture,
+- or compensate for repository deficiencies.
+
+Following correction and commitment by The Engineer, a new repository baseline shall be established and the Blind Architecture Review shall restart from the beginning of the affected section.
 
 ---
 
