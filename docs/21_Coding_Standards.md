@@ -3,80 +3,125 @@
 | Item | Value |
 |------|-------|
 | Document | Coding Standards |
-| Version | 0.1 |
-| Status | Reviewed |
-| Last Updated | 2026-07-13 |
+| Version | 1.0 |
+| Status | Constitutional Baseline |
+| Last Updated | 2026-08-03 |
 
 ---
 
 # Purpose
 
-This document defines the coding standards for the BattleStation project.
+This document defines the constitutional software engineering standards used during the implementation of the BattleStation System.
 
-These standards are intended to keep the codebase understandable, reliable, modular, testable, and maintainable throughout the life of the project.
+These standards guide the development of software that is understandable, dependable, maintainable, verifiable, and consistent with the approved constitutional engineering baseline.
 
-The BattleStation codebase shall favor clarity, maintainability, and reliability over cleverness or unnecessary optimization.
+This document establishes how BattleStation software should be engineered.
 
----
-
-# Scope
-
-These standards apply to:
-
-- BattleStation Server software
-- Mission Control
-- Browser-based interfaces
-- Database code
-- Hardware communication software
-- Module firmware
-- Testing tools
-- Maintenance utilities
-- Supporting scripts
-
-Language-specific standards may be added later, but they shall remain consistent with the principles defined in this document.
+Language-specific implementation guidance shall remain consistent with these standards.
 
 ---
 
-# Core Principles
+# Software Engineering Philosophy
 
-## Clarity First
+BattleStation software shall be engineered rather than merely programmed.
 
-Code shall be easy to read and understand.
+Software development is the disciplined process of implementing approved engineering responsibilities while preserving architectural integrity.
 
-A straightforward implementation is preferred over a shorter or more complicated solution.
+Software implementation shall remain consistent with:
 
-Code should communicate its purpose without requiring extensive interpretation.
+- Approved Requirements
+- Approved Architecture
+- Approved Engineering Decisions
+- Approved Verification Strategy
+- Approved Configuration Management practices
 
----
-
-## One Responsibility per Module
-
-Each software module shall have one clearly defined responsibility.
-
-Examples:
-
-- Registration Manager handles registration.
-- Match Engine handles match operation.
-- Safety Manager handles safety behavior.
-- Hardware Interface handles communication with physical modules.
-
-A module shall not take responsibility for unrelated system behavior.
+Software shall be written to support the long-term stewardship of BattleStation rather than only immediate implementation goals.
 
 ---
 
-## Small, Focused Functions
+# Engineering Objectives
 
-Functions should perform one logical task.
+BattleStation software shall be:
 
-Large functions should be divided into smaller functions when doing so improves:
+- Correct
+- Understandable
+- Maintainable
+- Testable
+- Modular
+- Traceable
+- Dependable
+- Verifiable
+
+Software shall favor clarity over cleverness.
+
+Implementation convenience shall never compromise architectural integrity.
+
+---
+
+# Relationship to the Constitutional Baseline
+
+Implementation shall follow the approved constitutional engineering baseline.
+
+Requirements define expected behavior.
+
+Architecture assigns responsibilities.
+
+Coding implements those responsibilities.
+
+Verification demonstrates compliance.
+
+Configuration Management preserves the approved implementation.
+
+Software implementation shall not redefine approved architectural responsibilities.
+
+# Constitutional Software Engineering Principles
+
+## 1. Clarity Before Cleverness
+
+Software shall communicate its intent clearly.
+
+Straightforward, understandable implementations shall be preferred over unnecessarily complex or highly optimized solutions.
+
+Engineers should be able to understand the purpose and behavior of software without requiring extensive interpretation.
+
+Readability is a long-term engineering asset.
+
+---
+
+## 2. One Responsibility per Service
+
+Every software service shall have one clearly defined responsibility.
+
+Responsibilities shall align with the approved Software Architecture.
+
+Examples include:
+
+- Tournament Service
+- Registration Service
+- Inspection Service
+- Match Service
+- Safety Service
+- Hardware Interface Service
+- Database Service
+- Reporting Service
+
+Services shall collaborate through documented interfaces rather than assuming responsibility for unrelated system behavior.
+
+---
+
+## 3. Small, Focused Operations
+
+Functions and methods shall perform one logical operation.
+
+When complexity grows, software should be decomposed into smaller, focused operations that improve:
 
 - Readability
-- Testing
+- Testability
 - Reuse
 - Error handling
-- Maintenance
+- Maintainability
 
-Function names shall describe the action they perform.
+Function names shall clearly describe the action being performed.
 
 Examples:
 
@@ -88,539 +133,326 @@ generate_bracket()
 check_module_health()
 ```
 
-Avoid vague names such as:
-
-```python
-do_work()
-handle_stuff()
-process_data()
-run_thing()
-```
+Avoid vague or ambiguous names.
 
 ---
 
-# Naming Standards
+## 4. Meaningful Naming
 
-Names shall be descriptive and consistent with:
+Names shall communicate engineering intent.
 
-- `02_Glossary_and_Naming_Convention.md`
-- `14_Software_Architecture.md`
-- `20_Design_Principles.md`
+Variables, functions, classes, constants, services, and modules shall use terminology defined by the BattleStation Glossary and Naming Convention.
 
-## Variables
+Names should describe responsibilities rather than implementation details.
 
-Variable names shall describe the information they contain.
-
-Preferred:
-
-```python
-match_time_remaining
-red_driver_ready
-official_robot_weight
-arena_door_closed
-```
-
-Avoid:
-
-```python
-x
-temp
-data1
-thing
-flag2
-```
-
-Short variable names may be used only where their meaning is immediately obvious, such as a small loop index.
+Consistency is preferred over brevity.
 
 ---
 
-## Functions
+## 5. Separation of Responsibilities
 
-Function names should use action-oriented language.
+Software shall preserve clear separation between major engineering concerns.
 
-Examples:
+Examples include:
 
-```python
-create_event()
-load_robot_profile()
-approve_inspection()
-send_module_command()
-```
-
----
-
-## Classes
-
-Class names shall represent the object or responsibility they model.
-
-Examples:
-
-```python
-TournamentManager
-MatchEngine
-SafetyManager
-ModuleHealthMonitor
-```
-
----
-
-## Constants
-
-Named constants shall be used instead of unexplained values.
-
-Preferred:
-
-```python
-MAX_MATCH_DURATION_SECONDS = 180
-DEFAULT_ARENA_RESET_SECONDS = 60
-MAX_UNSTICKS_PER_DRIVER = 1
-```
-
-Avoid:
-
-```python
-if match_time > 180:
-```
-
-Unexplained literal values are commonly called magic numbers and should be avoided.
-
----
-
-# Modularity
-
-BattleStation software shall be organized into independent packages and modules.
-
-Modules shall communicate through defined interfaces rather than directly modifying each other's internal data.
-
-A change within one module should not require unrelated modules to be rewritten.
-
-Shared functionality shall be placed in an appropriate shared package rather than duplicated.
-
----
-
-# Separation of Responsibilities
-
-The following concerns shall remain separated whenever practical:
-
-- Tournament rules
+- Tournament behavior
 - User-interface presentation
-- Database storage
 - Hardware communication
-- Safety logic
 - Configuration
+- Safety logic
+- Data persistence
 - Reporting
-- System diagnostics
+- Diagnostics
 
-For example, the Match Engine may request that a light be activated, but it should not contain the low-level CAN or BSBus implementation used to activate that light.
-
----
-
-# Hardware Abstraction
-
-Higher-level software shall not depend directly on specific hardware models.
-
-The Hardware Interface shall translate application commands into hardware communication.
-
-Preferred:
-
-```python
-hardware_interface.set_red_corner_light(True)
-```
-
-Avoid placing hardware-specific communication throughout the Match Engine or user-interface code.
-
-This allows hardware to change without requiring major application rewrites.
+Responsibilities shall communicate through documented interfaces while remaining internally independent.
 
 ---
 
-# Configuration
+## 6. Hardware Independence
 
-Values that may vary by event or installation shall be configurable.
+Application software shall remain independent of specific hardware implementations.
+
+The Hardware Interface Service shall translate application responsibilities into hardware communication.
+
+Higher-level services shall request desired behavior rather than implement hardware protocols directly.
+
+This preserves portability and long-term serviceability.
+
+---
+
+## 7. Configuration Rather Than Hard-Coding
+
+Values expected to vary between events, installations, or future releases shall be configurable.
 
 Examples include:
 
 - Match duration
-- Arena reset time
-- Weight limits
-- Weight tolerance
+- Arena reset timer
+- Tournament classes
 - Enabled modules
 - Network settings
 - Inspection templates
 
-Configurable values shall not be hard-coded throughout the application.
+Configuration shall be centralized and managed through approved interfaces.
 
-Safe default values may be provided.
-
----
-
-# Error Handling
-
-Errors shall be handled intentionally.
-
-The software shall not silently ignore unexpected failures.
-
-Errors should be classified according to their operational effect:
-
-- Informational
-- Warning
-- Alarm
-- Lockout
-
-Critical safety failures shall use safe default behavior.
-
-Error messages shall explain:
-
-- What failed
-- Why it matters
-- What action may resolve it
-
-Where practical, errors shall be written to the system log.
+Safe default values should be provided where practical.
 
 ---
 
-# Safety-Critical Code
+## 8. Intentional Error Handling
 
-Safety-related behavior shall be simple, explicit, and independently testable.
+Unexpected conditions shall be handled intentionally.
 
-Safety code shall:
+Software shall avoid silent failures.
 
-- Fail safely.
-- Avoid unnecessary dependencies.
-- Use clearly defined states.
-- Log safety events.
-- Prevent unsafe operation.
-- Remain separate from presentation-only features.
+Errors shall:
 
-Convenience features shall never override safety logic.
+- Describe the condition.
+- Indicate operational significance.
+- Suggest corrective action where practical.
+- Produce appropriate log entries.
+- Support safe system behavior.
 
-Critical safety faults shall not be bypassed through ordinary user-interface controls.
-
----
-
-# State Management
-
-Tournament and match behavior shall follow documented state machines.
-
-State transitions shall occur through defined commands.
-
-Hardware buttons, Mission Control controls, and automated safety triggers shall use the same internal state-management system.
-
-Code shall not directly alter match state from unrelated modules.
-
-Every significant state transition shall be logged.
+Safety-related failures shall always favor safe operation.
 
 ---
 
-# Database Standards
+## 9. State-Driven Behavior
 
-Database access shall occur through the Database Manager or a defined data-access layer.
+System behavior shall follow documented state models.
 
-Application modules shall not contain scattered database queries when a shared interface can be used.
+State transitions shall occur only through approved interfaces.
 
-Database operations shall:
+User interfaces, hardware controls, automation, and safety mechanisms shall utilize the same underlying state-management system.
 
-- Validate input.
-- Preserve referential integrity.
-- Handle failures.
-- Avoid partial updates.
-- Support backup and recovery.
-- Record timestamps where appropriate.
-
-Schema changes shall be documented and version-controlled.
+State transitions shall remain traceable and verifiable.
 
 ---
 
-# User Interface Standards
+## 10. Documentation as Engineering
 
-User-interface code shall remain separate from tournament business logic.
+Software documentation is part of the implementation.
 
-Interfaces shall call defined application services rather than reproducing logic independently.
+Comments should explain engineering intent rather than repeat obvious code.
 
-For example, Mission Control and a hardware Pause button shall both call the same match pause command.
-
-User interfaces shall display clear states and actionable errors.
-
-Detailed visual requirements will be defined in:
-
-- `19_Style_Guide.md`
-- `22_Interface_Standards.md`
-
----
-
-# Comments and Documentation
-
-Comments shall explain why code exists or why an unusual decision was made.
-
-Avoid comments that merely repeat the code.
-
-Poor example:
-
-```python
-# Add one to match number
-match_number += 1
-```
-
-Better example:
-
-```python
-# Match numbers are one-based because they are displayed directly to competitors.
-match_number += 1
-```
-
-Public functions, classes, and modules should include concise documentation describing:
+Public interfaces should document:
 
 - Purpose
 - Inputs
 - Outputs
-- Important side effects
-- Exceptions or failure behavior
+- Side effects
+- Failure behavior
+
+Software documentation shall evolve together with the implementation.
+
+# Software Engineering Practices
+
+## Architectural Compliance
+
+Software implementation shall preserve the responsibilities defined by the approved Software Architecture.
+
+Services shall not assume responsibilities assigned to other services.
+
+When implementation reveals an architectural deficiency, the architecture shall be reviewed before implementation proceeds.
+
+Software shall not redefine the architecture through implementation.
 
 ---
 
-# Type Information
+## Interface Design
 
-Python code should use type hints where practical.
+Communication between services shall occur only through documented interfaces.
 
-Example:
+Interfaces should:
 
-```python
-def calculate_remaining_time(
-    match_duration_seconds: int,
-    elapsed_seconds: int,
-) -> int:
-    return max(0, match_duration_seconds - elapsed_seconds)
-```
+- Clearly define their purpose.
+- Minimize unnecessary coupling.
+- Remain stable whenever practical.
+- Hide implementation details.
+- Support independent testing.
 
-Type hints improve readability, editor assistance, testing, and maintenance.
-
-Firmware written in C or C++ shall use explicit and appropriate data types.
+Changes to public interfaces should be carefully evaluated for their impact on dependent services.
 
 ---
 
-# Testing Requirements
+## Dependency Management
 
-Every meaningful software module shall be independently testable.
+Software dependencies shall remain intentional.
 
-New behavior should include tests where practical.
+Engineers should:
 
-Tests shall cover:
+- Prefer standard libraries where practical.
+- Minimize third-party dependencies.
+- Evaluate new dependencies for long-term maintainability.
+- Document significant external dependencies.
 
-- Expected operation
-- Invalid input
-- Boundary conditions
+Dependencies should support the engineering objectives of BattleStation rather than increase implementation complexity.
+
+---
+
+## Logging
+
+Logging provides engineering evidence.
+
+Log entries should be:
+
+- Meaningful.
+- Consistent.
+- Actionable.
+- Appropriate to the event.
+
+Important events include:
+
+- System startup
+- Module discovery
+- Service startup
+- Match state transitions
+- Safety events
+- Configuration changes
 - Fault conditions
-- Safety behavior
-- Recovery behavior
+- Shutdown
 
-A bug fix should include a regression test when practical.
-
-All tests shall remain traceable to the Test Plan and applicable requirements.
+Logging shall support troubleshooting without overwhelming the operator.
 
 ---
 
-# Dependencies
+## Security
 
-External dependencies shall be kept to a reasonable minimum.
+BattleStation operates primarily on a trusted private network.
 
-A dependency should be added only when it provides a clear benefit over implementing the required behavior internally.
+Security engineering shall focus on:
 
-Before adding a dependency, consider:
+- Protecting configuration integrity.
+- Preventing unauthorized administrative actions.
+- Preserving tournament data.
+- Protecting engineering configuration.
+- Supporting dependable operation.
 
-- Maintenance status
-- License
-- Security history
-- Linux compatibility
-- Offline availability
-- Long-term support
-- Project stability
-
-Dependency versions shall be recorded and controlled.
+Security mechanisms should remain appropriate for the operational environment without introducing unnecessary complexity.
 
 ---
 
-# Security
+## Performance
 
-Even though BattleStation operates primarily on a local network, security shall be considered throughout development.
+Performance improvements shall never compromise:
 
-The software shall:
+- Correctness
+- Readability
+- Maintainability
+- Architectural integrity
 
-- Validate user input.
-- Protect administrative functions.
-- Avoid exposing unnecessary network services.
-- Store credentials securely.
-- Avoid embedding passwords or secrets in source code.
-- Log authentication and permission failures where appropriate.
+Optimization should be based upon measured evidence rather than assumption.
 
-Safety-critical functions shall not depend on public Internet services.
+Premature optimization should be avoided.
 
 ---
 
-# Logging
+## Version Control
 
-The system shall use structured and consistent logging.
+Implementation shall be managed through Git.
 
-Logs should include:
+Commits should represent meaningful engineering progress.
 
-- Timestamp
-- Severity
-- Software module
-- Event description
-- Relevant event, match, robot, or module identifier
+Each commit should:
 
-Logs shall help diagnose faults without requiring the system to be reproduced immediately.
+- Build successfully.
+- Preserve repository integrity.
+- Include a descriptive commit message.
+- Represent a logical engineering change.
 
-Sensitive information shall not be written to logs unnecessarily.
-
----
-
-# Complete Master File Workflow
-
-Meaningful revisions shall be delivered as complete, internally consistent master files whenever practical.
-
-Partial code patches should be avoided when replacing the complete file reduces the chance of:
-
-- Pasting code into the wrong location
-- Duplicate logic
-- Missing imports
-- Inconsistent naming
-- Formatting mistakes
-- Documentation drift
-
-The workflow for a meaningful source-file revision is:
-
-1. Discuss the change.
-2. Confirm expected behavior.
-3. Generate the complete master file.
-4. Review the file.
-5. Run applicable tests.
-6. Commit the revision.
-7. Update related documentation and changelog entries when required.
-
-Small corrections may be made directly when replacing an entire file would create unnecessary risk.
+Large unrelated changes should be divided into separate commits whenever practical.
 
 ---
 
-# Backward Compatibility
+## Documentation
 
-Existing documented interfaces shall remain compatible whenever practical.
+Implementation and documentation shall evolve together.
 
-Changes that may break compatibility shall:
+When implementation changes:
 
-- Be intentional.
-- Be documented.
-- Include a migration plan when needed.
-- Update affected tests.
-- Update the Decision Log when architecturally significant.
+- Requirements should be reviewed.
+- Architecture should be reviewed.
+- Documentation should be updated.
+- Verification should be reviewed.
 
-Version 1 behavior shall not be changed casually after the Chapter 1 architecture freeze.
+The approved engineering baseline shall remain consistent.
+
+# Software Review
+
+Software implementation shall undergo engineering review before acceptance.
+
+Software reviews should verify:
+
+- Compliance with the approved Software Architecture.
+- Correct implementation of documented requirements.
+- Preservation of service responsibilities.
+- Appropriate interface usage.
+- Readability and maintainability.
+- Consistency with these Coding Standards.
+
+Review findings shall be documented and resolved through Configuration Management.
 
 ---
 
-# Code Review Checklist
+# Software Verification
 
-Before committing meaningful code, verify:
+Software implementation shall be verified in accordance with the BattleStation Test Plan.
 
-- The purpose of the change is understood.
-- The code follows the documented architecture.
-- Names follow the project glossary.
-- Functions and modules have focused responsibilities.
-- No unnecessary duplication was introduced.
-- Errors are handled intentionally.
+Verification shall demonstrate that:
+
+- Approved requirements have been satisfied.
+- Services perform their documented responsibilities.
+- Interfaces behave as documented.
+- Fault handling remains intentional.
 - Safety behavior remains correct.
-- Tests pass.
-- Documentation is updated where required.
-- The application remains in a working state.
+- Regression testing has been completed where applicable.
+
+Software shall not be considered complete merely because it executes.
+
+Software is considered complete when it satisfies its approved requirements, conforms to the constitutional architecture, passes required verification, and is supported by sufficient engineering documentation.
 
 ---
 
-# Git Standards
+# Software Engineering Governance
 
-Commits should represent one logical unit of work.
+These Coding Standards establish the constitutional expectations for BattleStation software implementation.
 
-Commit messages shall clearly describe what changed.
+They shall be applied together with:
 
-Preferred examples:
+- Requirements Specification
+- Software Architecture
+- Engineering Decision Records
+- Test Plan
+- Configuration Management practices
 
-```text
-Implemented match pause state transitions
-Added registration data validation
-Created BattleStation database schema
-Added Core Controller health monitoring
-Fixed bracket advancement after a bye
-```
+Where conflicts arise, the constitutional engineering baseline shall take precedence over implementation preferences.
 
-Avoid messages such as:
-
-```text
-Update
-Changes
-Fix stuff
-Work
-Test
-```
-
-Every commit should leave the repository in a coherent and usable state whenever practical.
+Changes to these standards shall be reviewed before adoption into the constitutional baseline.
 
 ---
 
-# Language-Specific Standards
+# Design Principles
 
-## Python
+BattleStation software engineering shall:
 
-Python shall be the primary language for the BattleStation Server unless an approved decision changes the architecture.
-
-Python code should generally follow:
-
-- PEP 8 formatting
-- Type hints
-- Clear package boundaries
-- Automated formatting and linting when selected
-- Virtual environments for dependency isolation
-
-Exact tools will be selected during Chapter 2.
-
----
-
-## C and C++
-
-C or C++ may be used for embedded firmware and hardware modules.
-
-Firmware code shall:
-
-- Remain modular.
-- Avoid blocking behavior where it could interfere with safety or communication.
-- Use named constants.
-- Validate incoming messages.
-- Handle communication loss safely.
-- Include hardware-level tests where practical.
-
----
-
-# Definition of Acceptable Code
-
-BattleStation code is acceptable when it is:
-
-- Correct
-- Understandable
-- Testable
-- Maintainable
-- Documented
-- Consistent with the architecture
-- Safe for its intended responsibility
-
-Code is not considered complete merely because it runs.
+- Preserve architectural integrity.
+- Remain understandable.
+- Favor maintainability over cleverness.
+- Implement documented responsibilities.
+- Produce objective engineering evidence.
+- Support independent verification.
+- Evolve through disciplined engineering.
+- Remain consistent with the constitutional engineering baseline.
 
 ---
 
 # Related Documents
 
-- `02_Glossary_and_Naming_Convention.md`
-- `07_Match_State_Machine.md`
 - `09_Requirements_Specification.md`
-- `10_Decision_Log.md`
-- `12_Chapters.md`
+- `10_Engineering_Decision_Records.md`
+- `12_Development_Roadmap.md`
 - `14_Software_Architecture.md`
 - `16_Test_Plan.md`
+- `18_Chapter_1_Architecture_Review.md`
 - `20_Design_Principles.md`
-- `22_Interface_Standards.md`
-- `23_Release_Process.md`
+
