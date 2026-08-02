@@ -1,119 +1,119 @@
+# Engineering Decision Record 001
+
+| Item | Value |
+|------|-------|
+| Decision ID | EDR-001 |
+| Title | Separation of BattleStation Application Services and Core Controller |
+| Version | 1.0 |
+| Status | Accepted |
+| Date | 2026-08-03 |
+
 ---
 
-# Decision 001
+# Background
 
-## Title
+Early BattleStation concepts combined tournament management software and field hardware control within a single Raspberry Pi-based system.
 
-BattleStation Core Compute Platform
+As architectural responsibilities became better understood, it became apparent that two fundamentally different responsibilities existed:
 
-### Status
+- Tournament management
+- Real-time hardware coordination
 
-Open – Under Evaluation
+These responsibilities evolved independently during Chapter 1 engineering.
 
-### Date
+---
 
-2026-07-06
+# Problem
 
-### Background
+Combining tournament management and real-time hardware control within one implementation unnecessarily coupled software, infrastructure, and hardware.
 
-The original BattleStation concept used a Raspberry Pi as both the system controller and application server.
+This reduced flexibility and limited future deployment options.
 
-As the project evolved, the responsibilities of the BattleStation Core expanded significantly to include:
+---
 
-- Tournament database
-- Local web server
-- Coordinator interface
-- Registration interface
-- Inspection interface
-- Public display
-- Match engine
-- Module communications
-- Diagnostics
-- Logging
-- Report generation
-- Local Wi-Fi access point
+# Decision
 
-### Proposal
+BattleStation shall separate tournament management from field hardware coordination.
 
-Evaluate replacing the Raspberry Pi with a Linux-based Mini PC to act as the BattleStation Server.
+The architecture consists of:
 
-The server would communicate with the BattleStation Core Controller through a single high-speed connection while dedicated microcontrollers continue handling real-time hardware functions.
+- BattleStation Application Services
+- BattleStation Core Controller
 
-### Proposed Architecture
+Application Services coordinate tournament operation.
 
-BattleStation Server
+The Core Controller coordinates field hardware.
 
-- Linux Operating System
-- BattleStation Application
-- Database
-- Web Server
-- Reports
-- Wi-Fi Access Point
-- Local Network Services
+Both communicate through documented interfaces.
 
-↓
+---
 
-Single High-Speed Connection
-(Ethernet preferred)
+# Infrastructure
 
-↓
+BattleStation Application Services consume infrastructure services rather than providing them directly.
 
-BattleStation Core Controller
+Current engineering direction utilizes HomeStation as the infrastructure platform.
 
-- Power Distribution
-- BattleStation Bus Interface
-- Diagnostics Display
-- Safety Electronics
-- Module Communications
+The BattleStation architecture remains independent of any specific infrastructure implementation.
 
-↓
+---
 
-BattleStation Bus
+# Architectural Result
 
-↓
+BattleStation architecture becomes:
 
-Driver Stations
-Referee Station
-Arena Safety Module
-Lighting Controller
-Future Modules
+```text
+BattleStation
+│
+├── Application Services
+│
+├── Core Controller
+│
+├── BattleStation Bus
+│
+└── Distributed Modules
+```
 
-### Advantages
+Infrastructure hosts Application Services.
 
-- Higher processing capability
-- Greater memory and storage
-- Easier software development
-- Easier hardware replacement
-- Improved long-term serviceability
-- Future expansion without redesign
-- Separation of computing hardware from control electronics
+Infrastructure is not itself part of the BattleStation architecture.
 
-### Design Principle
+---
 
-The compute platform shall be replaceable without requiring changes to the BattleStation hardware architecture.
+# Consequences
 
-The BattleStation Core Controller and BattleStation Server shall be treated as independent modules.
+Positive outcomes include:
 
-### Current Leaning
+- Clear separation of responsibilities.
+- Independent evolution of software and hardware.
+- Simplified hardware replacement.
+- Improved deployment flexibility.
+- Improved maintainability.
+- Improved long-term scalability.
+- Greater implementation independence.
 
-Preferred architecture:
+---
 
-BattleStation Server (Linux Mini PC)
+# Design Principle
 
-communicating with
+Architectural responsibilities shall remain independent of implementation technologies.
 
-BattleStation Core Controller
+Infrastructure may evolve without requiring architectural redesign.
 
-over a single high-speed connection.
+---
 
-### Decision Deferred
+# Status
 
-Final selection will be made before software implementation begins after hardware, software, and networking requirements have been fully evaluated.
+Accepted.
 
-### Startup Requirement
+This decision has been incorporated into:
 
-The BattleStation Server must operate headless in production.
+- Project Charter
+- Glossary
+- System Modules
+- System Definition
+- Requirements Specification
 
-On power-up, the server shall automatically boot Linux and start all required BattleStation services without requiring keyboard, mouse, or monitor input.
+No further architectural action is required.
 
-The system shall provide maintenance access through SSH, local web interface, or direct keyboard/monitor only when needed.
+This record is retained to preserve engineering history.
