@@ -3,23 +3,25 @@
 | Item | Value |
 |------|-------|
 | Document | Project Charter |
-| Version | 0.1 |
-| Status | Reviewed |
-| Last Updated | 2026-07-15 |
+| Version | 1.0 |
+| Status | Constitutional Baseline |
+| Last Updated | 2026-08-02 |
 
 ---
 
 # Purpose
 
-This charter establishes the purpose, authority, scope, objectives, constraints, governance, and success criteria of the BattleStation project.
+This Project Charter establishes the constitutional foundation of the BattleStation project by defining its purpose, authority, scope, objectives, constraints, governance, and success criteria.
 
 BattleStation is a complete, modular robot combat tournament management and arena-control system.
 
 The project exists to reduce the workload placed on event organizers, improve tournament flow and safety, preserve event information, and provide competitors and spectators with a professional event experience.
 
-This charter is the highest-level engineering definition of the project.
+This charter is the highest-level engineering definition of the BattleStation project.
 
 All BattleStation requirements, architecture, software, hardware, interfaces, tests, and releases shall remain consistent with this charter.
+
+BattleStation is a project within the **wLIGHTn** organization. Organizational departments publish standards and provide specialist expertise within their respective domains. BattleStation consumes those published standards while remaining responsible for the engineering of the BattleStation system.
 
 ---
 
@@ -105,15 +107,9 @@ The system shall reduce manual event-day work while preserving safe, reliable, a
 
 The first planned production deployment of BattleStation is the February 2027 Battle of Bots tournament.
 
-The initial arena baseline is:
+BattleStation shall be designed as a reusable platform capable of supporting future arena sizes, event configurations, and tournament requirements without requiring fundamental architectural redesign.
 
-- Width: 6 feet
-- Length: 6 feet
-- Height: 3 feet
-
-The architecture shall support future arena sizes and event configurations without requiring fundamental redesign.
-
-Although Battle of Bots is the first deployment, BattleStation shall be designed as a reusable platform rather than a single-event application.
+Although Battle of Bots is the first deployment, BattleStation is engineered as a reusable event-management platform rather than a single-event application.
 
 ---
 
@@ -133,8 +129,6 @@ BattleStation shall:
 10. Support future expansion without destabilizing Version 1.
 11. Provide a professional and consistent user experience.
 12. Remain understandable and maintainable through complete repository documentation.
-
----
 
 # Scope
 
@@ -223,7 +217,7 @@ Future development may include:
 - AI-assisted event analysis
 - Expanded tournament networking
 
-Future possibilities may influence extensibility, but shall not introduce unnecessary complexity into the Version 1 implementation.
+Future possibilities may influence extensibility but shall not introduce unnecessary complexity into the Version 1 implementation.
 
 ---
 
@@ -231,7 +225,7 @@ Future possibilities may influence extensibility, but shall not introduce unnece
 
 Chapter 1 does not include production software or completed physical hardware.
 
-Chapter 1 defines the engineering foundation required to begin implementation.
+Chapter 1 establishes the engineering foundation required to begin implementation.
 
 The following belong to later Chapters:
 
@@ -253,7 +247,7 @@ The following belong to later Chapters:
 
 BattleStation includes:
 
-- BattleStation Server
+- BattleStation Application Services
 - BattleStation Core Controller
 - Mission Control
 - Registration Station
@@ -264,19 +258,22 @@ BattleStation includes:
 - Arena Lighting Module
 - Public Display
 - BattleStation Bus
-- Tournament database
-- Local web services
+- Tournament data services
+- Local web interfaces
 - Reporting and archival functions
 
-BattleStation may communicate with external or optional systems, but shall not depend on them for core tournament operation.
+BattleStation may communicate with external or optional systems but shall not depend on them for core tournament operation.
 
 Examples of external or optional systems include:
 
+- Shared infrastructure services
 - Facility Internet
 - Video-recording equipment
 - Pit Audio equipment
 - Additional displays
 - Future cloud services
+
+BattleStation consumes external services through documented interfaces. The identity or implementation of those services does not alter BattleStation's architectural responsibilities.
 
 ---
 
@@ -299,15 +296,28 @@ The Battle Commander oversees:
 - Results
 - Reports
 
+---
+
 ## Competitors and Drivers
 
 Competitors register one or more robots.
 
 Drivers operate robots during matches and interact with Driver Stations for Ready and Tap Out functions.
 
+---
+
 ## Referee
 
-The Referee oversees match fairness, rule enforcement, pauses, unsticks, arena issues, and match outcomes.
+The Referee oversees:
+
+- Match fairness
+- Rule enforcement
+- Pauses
+- Unsticks
+- Arena issues
+- Match outcomes
+
+---
 
 ## Inspector
 
@@ -320,33 +330,43 @@ The Inspector verifies:
 - Special construction requirements
 - Inspection approval
 
+---
+
 ## Registration Operator
 
 The Registration Operator assists competitors with event check-in and registration data.
+
+---
 
 ## Arena Crew
 
 Arena Crew members prepare, clean, and reset the arena between matches.
 
+---
+
 ## Spectators
 
 Spectators receive event information through the Public Display.
 
+---
+
 ## System Administrator
 
-The System Administrator maintains:
+The System Administrator maintains the infrastructure required to support BattleStation operation, including:
 
-- Software
-- Hardware
-- Configuration
+- Software deployment
+- Hardware configuration
+- System configuration
 - Backups
 - Logs
 - Updates
 - Diagnostics
 
-One person may perform multiple roles at smaller events.
+Operational infrastructure may be provided by approved organizational platforms without changing BattleStation's architectural responsibilities.
 
 ---
+
+One person may perform multiple roles at smaller events.
 
 # Operational Philosophy
 
@@ -361,7 +381,7 @@ The system shall:
 - Provide useful information during arena reset periods.
 - Automate bracket progression and reporting.
 - Warn only when operator attention is required.
-- Allow unused Optional modules to be disabled cleanly.
+- Allow unused optional modules to be disabled cleanly.
 - Preserve manual fallback options for non-critical functions where practical.
 
 ---
@@ -392,7 +412,7 @@ Convenience, presentation, reporting, and optional features shall never override
 
 # Reliability Philosophy
 
-BattleStation shall be designed so that failure of a non-critical feature does not unnecessarily stop the tournament.
+BattleStation shall be designed so that failure of a non-critical feature does not unnecessarily stop tournament operation.
 
 Modules shall be classified as:
 
@@ -423,7 +443,7 @@ BattleStation shall operate entirely on a private local network without requirin
 
 Facility Internet may be shared with connected devices when available, but loss of Internet shall not interrupt tournament operation.
 
-Critical safety and time-sensitive control functions shall not depend on public Internet services.
+Critical safety, timing, and event-control functions shall not depend upon public Internet services.
 
 ---
 
@@ -440,11 +460,17 @@ Modules shall:
 - Report status and faults where applicable.
 - Support future upgrades.
 
-The BattleStation Server shall be treated as a replaceable computing appliance.
+The BattleStation Core Controller shall remain architecturally independent of the infrastructure hosting BattleStation services.
 
-The BattleStation Server and BattleStation Core Controller shall remain separate architectural components.
+Infrastructure may evolve without requiring redesign of:
 
-A future Server replacement shall not require redesign of the Core Controller, BSBus, or field modules.
+- BattleStation Core
+- BattleStation Bus
+- Event modules
+- Field wiring
+- Event workflows
+
+Likewise, infrastructure evolution shall not require changes to BattleStation's architectural responsibilities.
 
 ---
 
@@ -452,39 +478,45 @@ A future Server replacement shall not require redesign of the Core Controller, B
 
 The current approved technical direction includes:
 
-- Linux-based Mini PC as the BattleStation Server platform
+- Containerized BattleStation deployment
 - Headless automatic startup
 - Local browser-based interfaces
-- Private locally hosted network
-- Separate BattleStation Core Controller
-- BattleStation Bus for distributed module communication
+- Private local network
+- BattleStation Core Controller
+- BattleStation Bus (BSBus) for distributed module communication
 - CAN as the initial candidate BSBus physical layer
 - CAT6 as the preferred candidate field cable
 - RJ45 as the preferred candidate field connector
 - Pass-through module connections
 - Local power for high-current modules
-- Modular enclosures and field-replaceable cables
+- Modular enclosures
+- Field-replaceable cables
+- Externalized configuration
+- Infrastructure services consumed through documented interfaces
 
-Specific implementation components may be selected during later Chapters provided they remain consistent with the approved architecture.
+Specific implementation technologies may evolve during future Chapters provided they remain consistent with the approved architecture and responsibilities.
 
----
+Deployment infrastructure shall satisfy BattleStation's required services without altering the BattleStation architecture.
 
 # Development Philosophy
 
-BattleStation shall use a documentation-first engineering process.
+BattleStation shall follow a documentation-first engineering process.
 
-The standard workflow is:
+Engineering work shall progress through disciplined discovery, review, documentation, and implementation rather than implementation-driven design.
 
-1. Brainstorm
-2. Review
-3. Decide
-4. Document
-5. Generate the complete master artifact
-6. Review the artifact
-7. Commit to Git
-8. Implement
-9. Test
-10. Release
+The standard engineering workflow is:
+
+1. Discover
+2. Discuss
+3. Review
+4. Decide
+5. Document
+6. Generate the complete master artifact
+7. Review the artifact
+8. Commit to the repository
+9. Implement
+10. Validate
+11. Release
 
 The project shall favor:
 
@@ -494,6 +526,7 @@ The project shall favor:
 - Complete master-file revisions over scattered patches
 - Documented interfaces over undocumented coupling
 - Intentional decisions over accidental behavior
+- Architectural consistency over implementation convenience
 
 ---
 
@@ -509,11 +542,23 @@ Once information has been reviewed and committed, the repository supersedes:
 - Uncommitted drafts
 - Undocumented assumptions
 
-Architecture shall be understandable without the original architects being present.
+BattleStation shall reference published organizational standards rather than duplicate them.
+
+Architecture shall remain understandable without the original architects being present.
+
+Engineering decisions shall be traceable through the repository and supporting engineering records.
 
 ---
 
 # Project Governance
+
+BattleStation is a project within the wLIGHTn organization.
+
+Organizational departments publish standards, provide specialist expertise, and steward their respective disciplines.
+
+BattleStation consumes those standards while remaining responsible for the engineering, implementation, and operation of the BattleStation system.
+
+---
 
 ## Chief Systems Architect
 
@@ -529,9 +574,11 @@ The Chief Systems Architect is responsible for:
 - System direction
 - Final architectural approval
 
+---
+
 ## The Engineer
 
-**OpenAI ChatGPT**
+**OpenAI ChatGPT ("The Engineer")**
 
 The Engineer supports:
 
@@ -543,6 +590,10 @@ The Engineer supports:
 - Software planning
 - Engineering consistency
 - Systems navigation
+
+The Engineer serves as an engineering advisor and reviewer. Final engineering authority remains with the Chief Systems Architect.
+
+---
 
 ## Decision Authority
 
@@ -562,7 +613,7 @@ Significant technical decisions shall be:
 
 BattleStation development is subject to the following constraints:
 
-- Version 1 must be ready for the February 2027 Battle of Bots event.
+- Version 1 must be ready for the February 2027 Battle of Bots tournament.
 - Development time is limited.
 - The Battle Commander may also be a tournament competitor.
 - Event-day operation must minimize dependency on one person.
@@ -571,15 +622,45 @@ BattleStation development is subject to the following constraints:
 - Arena debris may affect exposed equipment.
 - Modules and wiring must support repeated setup and teardown.
 - Component selection should remain cost-conscious.
-- Optional features must not delay core operation.
-- Safety cannot be compromised for schedule or convenience.
-- Final visual documentation depends on completion of official BOB branding.
+- Optional features shall not delay completion of core functionality.
+- Safety shall never be compromised for schedule or convenience.
+- BattleStation shall conform to published organizational standards where applicable.
+- Final visual documentation depends upon the publication of official BattleStation branding standards.
 
----
+# CR-001 Change Summary
+
+## Architectural Changes
+
+None.
+
+## Organizational Changes
+
+- Added relationship to the wLIGHTn organization.
+- Clarified organizational standards are referenced rather than duplicated.
+
+## Technical Direction
+
+- Removed implementation-specific infrastructure references.
+- Replaced platform-specific wording with responsibility-based wording.
+
+## Governance
+
+- Clarified Engineering advisory role.
+- Clarified organizational department relationship.
+
+## Repository
+
+- Strengthened repository authority.
+
+## Result
+
+No architectural intent changed.
+
+Document clarity, maintainability, and organizational consistency improved.
 
 # Assumptions
 
-Chapter 1 is based on the following assumptions:
+Chapter 1 is based upon the following assumptions:
 
 - Battle of Bots is currently an annual event.
 - The February 2027 event will be the second annual event.
@@ -587,10 +668,10 @@ Chapter 1 is based on the following assumptions:
 - Additional classes may be configured.
 - A proposed Plastic Ant class may use a 454 g maximum weight and class-specific construction inspection.
 - Competitors may enter multiple robots.
-- Mission Control and event laptops connect through the local BattleStation network.
-- The system will be assembled, transported, installed, and removed for events.
-- Manual fallback may be used for non-critical features.
-- Final component choices may evolve during prototyping without changing the architecture.
+- Mission Control and event workstations communicate through the local BattleStation network.
+- The system will be assembled, transported, installed, operated, and removed for each event.
+- Manual fallback procedures may be used for non-critical functions.
+- Final implementation technologies may evolve during prototyping without changing the approved architecture.
 
 ---
 
@@ -598,36 +679,36 @@ Chapter 1 is based on the following assumptions:
 
 Major project risks include:
 
-- Expanding Version 1 scope
-- Insufficient implementation time
-- Hardware integration delays
-- Incomplete safety validation
-- Network instability
-- Inadequate tournament simulation
-- Undocumented architecture changes
-- Overdependence on one operator
-- Uncontrolled hardware substitutions
-- Failure to maintain repository consistency
-- Delaying implementation through unnecessary redesign
+- Expanding Version 1 scope.
+- Insufficient implementation time.
+- Hardware integration delays.
+- Incomplete safety validation.
+- Network instability.
+- Inadequate tournament simulation.
+- Undocumented architectural changes.
+- Overdependence on one operator.
+- Uncontrolled hardware substitutions.
+- Failure to maintain repository consistency.
+- Delaying implementation through unnecessary redesign.
 
 These risks shall be managed through:
 
-- Version buckets
-- Chapter planning
-- Architecture review
-- Decision logging
-- Complete master revisions
-- Requirement traceability
-- Test planning
-- Regression testing
-- Architecture freeze
-- Controlled release procedures
+- Version Buckets
+- Chapter Planning
+- Architecture Review
+- Decision Logging
+- Complete Master Revisions
+- Requirements Traceability
+- Test Planning
+- Regression Testing
+- Architecture Freeze
+- Controlled Release Procedures
 
 ---
 
 # Chapter 1 Objective
 
-Chapter 1 — Building the Foundation — establishes the complete engineering baseline required for implementation.
+Chapter 1 — **Building the Foundation** — establishes the complete engineering baseline required for implementation.
 
 Chapter 1 includes:
 
@@ -653,17 +734,19 @@ Chapter 1 includes:
 - Engineering review
 - Blind architecture review
 
+Chapter 1 intentionally defines responsibilities, architecture, interfaces, and engineering process before implementation begins.
+
 ---
 
 # Chapter 1 Acceptance
 
 Chapter 1 shall not be considered complete merely because its documents exist.
 
-It must pass two reviews.
+It shall be considered complete only after successfully passing the established engineering review process.
 
 ## ER-1 — Engineering Review
 
-The Engineer shall use the committed repository and complete project context to verify:
+The Engineer shall evaluate the committed repository using complete engineering context to verify:
 
 - Architectural correctness
 - Completeness
@@ -673,21 +756,39 @@ The Engineer shall use the committed repository and complete project context to 
 - Scope control
 - Implementation readiness
 
+---
+
+## CR-1 — Constitutional Revision
+
+Engineering shall evaluate all approved Engineering Refinements discovered during ER-1.
+
+Constitutional Revision shall improve the clarity, consistency, traceability, and maintainability of the repository without changing the approved architecture.
+
+Any proposal that changes architectural intent, responsibilities, or system boundaries shall be deferred for future engineering planning rather than incorporated into Constitutional Revision.
+
+---
+
 ## BR-1 — Blind Architecture Review
 
-Junior Engineer #1 shall use only the committed repository and no prior BattleStation or Battle of Bots knowledge.
+Junior Engineer #1 shall evaluate only the committed repository with no prior BattleStation or Battle of Bots knowledge.
 
 The Blind Architecture Review shall determine whether an independent engineer can understand:
 
-- What BattleStation is
-- What event it serves
-- Who uses it
-- How it operates
-- How safety works
-- What Version 1 includes
-- How implementation should begin
+- What BattleStation is.
+- What event it serves.
+- Who uses it.
+- How it operates.
+- How safety works.
+- What Version 1 includes.
+- How implementation should begin.
 
-Architecture shall be understandable without the architects being present.
+Architecture shall remain understandable without the original architects being present.
+
+---
+
+## Final Acceptance
+
+Following successful completion of ER-1, CR-1, and BR-1, Chapter 1 may be formally accepted and frozen as the constitutional engineering baseline for BattleStation Version 1.
 
 ---
 
@@ -709,8 +810,8 @@ BattleStation Version 1.0 is successful when it can:
 - Generate final standings and completed brackets.
 - Recover safely from expected faults.
 - Complete a full tournament simulation.
-- Pass all Critical acceptance tests.
-- Run the February 2027 Battle of Bots tournament without paper brackets or external spreadsheets.
+- Pass all critical acceptance tests.
+- Successfully operate the February 2027 Battle of Bots tournament without paper brackets or external spreadsheets.
 
 ---
 
@@ -718,9 +819,9 @@ BattleStation Version 1.0 is successful when it can:
 
 The BattleStation project succeeds when it delivers a professional, reliable, modular, safe, maintainable, and understandable tournament management platform that reduces organizer workload and improves the event experience.
 
-The project shall not be considered successful merely because the system runs.
+The project shall not be considered successful merely because the system operates.
 
-It must also be:
+It shall also be:
 
 - Documented
 - Testable
@@ -729,6 +830,8 @@ It must also be:
 - Recoverable
 - Expandable
 - Understandable by future contributors
+
+BattleStation shall remain understandable, maintainable, and extensible without requiring the continued involvement of its original architects.
 
 ---
 
@@ -751,6 +854,7 @@ It must also be:
 - `15_Wiring_Architecture.md`
 - `16_Test_Plan.md`
 - `18_Architecture_Review.md`
+- `19_BattleStation_Style_Guide.md`
 - `20_Design_Principles.md`
 - `21_Coding_Standards.md`
 - `22_Interface_Standards.md`
