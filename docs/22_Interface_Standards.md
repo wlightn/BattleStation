@@ -3,321 +3,307 @@
 | Item | Value |
 |------|-------|
 | Document | Interface Standards |
-| Version | 0.1 |
-| Status | Reviewed |
-| Last Updated | 2026-07-13 |
+| Version | 1.0 |
+| Status | Constitutional Baseline |
+| Last Updated | 2026-08-03 |
 
 ---
 
 # Purpose
 
-This document defines the behavioral standards for all BattleStation user interfaces.
+This document defines the constitutional behavioral standards for every BattleStation user interface.
 
-The purpose of these standards is to provide a consistent user experience across every BattleStation interface regardless of hardware platform or future software revisions.
+The objective is to provide a consistent, understandable, dependable, and predictable user experience across every BattleStation interface regardless of hardware platform or future software implementation.
 
-Visual appearance is defined separately in the BattleStation Style Guide.
+This document governs interface behavior.
+
+Visual appearance is governed by the BattleStation Style Guide.
 
 ---
 
-# Design Philosophy
+# Interface Engineering Philosophy
 
-BattleStation interfaces shall be:
+BattleStation interfaces exist to support tournament operation.
 
-- Simple
+Interfaces shall communicate system state clearly, guide user actions appropriately, and reduce the cognitive workload of tournament personnel.
+
+An interface should never require a user to guess:
+
+- What the system is doing.
+- What state the system is in.
+- What actions are currently available.
+- What action is expected next.
+- Why an operation cannot proceed.
+
+The interface is an operational component of the engineering system rather than a decorative presentation layer.
+
+---
+
+# Engineering Objectives
+
+Every BattleStation interface shall be:
+
+- Understandable
+- Predictable
 - Consistent
 - Responsive
 - Reliable
-- Easy to understand
-- Suitable for operation during a live tournament
+- Role-focused
+- Operationally efficient
 
-The operator should never have to guess what the system is doing.
-
----
-
-# General Principles
-
-Every BattleStation interface shall:
-
-- Clearly identify itself.
-- Display current system status.
-- Display important warnings.
-- Prevent unsafe actions.
-- Confirm significant actions.
-- Remain usable under tournament conditions.
+Interface behavior shall support the responsibilities assigned by the approved Software Architecture.
 
 ---
 
-# Screen Identification
+# Relationship to the Constitutional Baseline
 
-Every interface shall begin with:
+Requirements define required behavior.
 
-BattleStation
+Software Architecture defines Application Service responsibilities.
 
-Interface Name
+The Style Guide defines visual presentation.
 
-Examples:
+Interface Standards define how users interact with those services.
 
-Mission Control
+Implementation shall preserve these responsibilities throughout every BattleStation interface.
 
-Registration Station
+# Constitutional Interface Principles
 
-Inspection Station
+## 1. Role-Focused Interfaces
 
-Driver Station
+Every BattleStation interface shall be designed around a specific operational role.
 
-Referee Station
+Interfaces shall present only the information and controls required for that role.
 
-Public Display
+Examples include:
 
----
+- Mission Control
+- Registration Station
+- Inspection Station
+- Driver Station
+- Referee Station
+- Public Display
 
-# Navigation
-
-Navigation should remain consistent throughout the application.
-
-Preferred:
-
-- Home
-- Back
-- Cancel
-- Save
-- Continue
-
-Avoid changing button locations between screens.
+Operational responsibilities shall not be mixed unnecessarily.
 
 ---
 
-# Status Display
+## 2. State Awareness
 
-Every operational interface shall display:
+Every operational interface shall clearly communicate the current system state.
 
-- Current system status
-- Active tournament
+Where applicable, interfaces should display:
+
+- Current tournament
 - Current match
-- Network connection
-- Module communication status
-
-Mission Control shall additionally display:
-
-- Overall system health
-- Startup verification
+- Match state
+- System status
 - Active warnings
 - Active alarms
 
----
-
-# Color Usage
-
-Colors shall communicate system status rather than decoration.
-
-Preferred meanings:
-
-Green
-
-Ready
-
-Blue
-
-Information
-
-Yellow
-
-Warning
-
-Red
-
-Alarm
-
-Gray
-
-Disabled
-
-Exact colors shall be defined in:
-
-19_Style_Guide.md
+Users should never need to infer the current operational state.
 
 ---
 
-# Icons
+## 3. Consistent Interaction
 
-Icons should:
+Common actions shall behave consistently throughout BattleStation.
 
-- Be simple.
-- Be recognizable.
-- Be consistent.
-- Supplement text rather than replace it.
+Navigation, terminology, confirmations, and system responses shall remain predictable across all interfaces.
 
-Critical functions shall always include descriptive text.
+Equivalent actions shall produce equivalent behavior regardless of where they are initiated.
 
 ---
 
-# Button Standards
+## 4. Action-Oriented Design
 
-Buttons shall use action-oriented labels.
+Interfaces shall emphasize actions rather than implementation.
 
-Preferred:
-
-Start Match
-
-Pause Match
-
-Resume Match
-
-Record Result
-
-Approve Inspection
-
-Generate Bracket
-
-Avoid vague labels such as:
-
-Go
-
-Do It
-
-Run
-
-OK
-
----
-
-# Confirmation Dialogs
-
-Confirmation shall be required before:
-
-- Ending a tournament
-- Deleting records
-- Resetting a bracket
-- Clearing reports
-- Performing administrative functions
-
-Routine tournament operations should not require unnecessary confirmation.
-
----
-
-# Error Messages
-
-Error messages shall explain:
-
-- What happened.
-- Why it matters.
-- Possible corrective action.
-
-Poor:
-
-Error 17
-
-Better:
-
-Arena Door Open
-
-Match cannot begin until all arena doors are closed.
-
----
-
-# Warning Messages
-
-Warnings shall:
-
-- Clearly identify the condition.
-- Explain operational impact.
-- Indicate whether tournament operation may continue.
-
-Example:
-
-Optional lighting module unavailable.
-
-Tournament operation may continue.
-
----
-
-# Alarm Messages
-
-Alarm messages shall identify conditions requiring immediate attention.
+Controls should describe what will happen.
 
 Examples:
 
-Emergency Stop Active
+- Start Match
+- Pause Match
+- Resume Match
+- Approve Inspection
+- Generate Bracket
 
-Core Controller Communication Lost
-
-Arena Door Open During Match
-
-Mission Control shall prominently display active alarms.
+Labels shall communicate intent clearly.
 
 ---
 
-# Accessibility
+## 5. Safe Operation
 
-Interfaces shall remain usable under tournament conditions.
+Interfaces shall prevent unsafe operation whenever practical.
 
-Design considerations include:
+The interface shall:
 
-- Large buttons
+- Prevent prohibited actions.
+- Explain why an action is unavailable.
+- Require confirmation for destructive operations.
+- Respect Safety Manager decisions.
+
+User interfaces shall never bypass approved safety behavior.
+
+---
+
+## 6. Clear Operational Feedback
+
+Every user action shall produce appropriate feedback.
+
+Feedback may include:
+
+- Status updates
+- Progress indicators
+- Confirmation messages
+- Warning messages
+- Alarm messages
+
+The user should always understand the result of an action.
+
+---
+
+## 7. Error Communication
+
+Errors shall communicate:
+
+- What occurred.
+- Why the condition matters.
+- Whether tournament operation may continue.
+- Recommended corrective action when practical.
+
+Error messages shall support decision making rather than simply reporting failure.
+
+---
+
+## 8. Accessibility
+
+Interfaces shall remain usable under tournament operating conditions.
+
+Engineering should consider:
+
+- Readability
+- Touch operation
 - High contrast
-- Readable fonts
-- Minimal clutter
-- Touch-friendly controls
-- Clear spacing
+- Appropriate spacing
+- Minimal visual clutter
+- Rapid recognition of critical information
+
+Accessibility improves dependable operation for every user.
 
 ---
 
-# Response Time
+## 9. Operational Performance
 
-User interfaces should respond immediately to user input whenever practical.
+Interfaces should respond promptly to user interaction.
 
-Operations requiring noticeable processing time should display progress indicators.
+Where processing requires noticeable time, the interface should indicate that work is in progress.
 
----
-
-# Logging
-
-Significant user actions should be logged.
-
-Examples:
-
-Tournament started
-
-Match paused
-
-Inspection approved
-
-Configuration changed
-
-Administrative login
+The system shall avoid leaving users uncertain whether an action has been accepted.
 
 ---
 
-# Browser Compatibility
+## 10. Consistent System Behavior
 
-Browser-based interfaces should function correctly on current versions of major browsers.
+All BattleStation interfaces shall interact with the same underlying Application Services.
 
-Specific browser testing requirements shall be defined during implementation.
+Mission Control, hardware controls, automated actions, and future interfaces shall invoke the same documented service responsibilities.
+
+Business logic shall not be duplicated between interfaces.
+
+# Operational Behavior
+
+BattleStation interfaces shall present the current operational state of the system accurately and consistently.
+
+Interfaces shall not create independent operational behavior.
+
+All user actions shall be performed through approved Application Services in accordance with the Software Architecture.
+
+Whenever practical, interfaces should:
+
+- Display current system state.
+- Display available actions.
+- Prevent invalid operations.
+- Explain unavailable operations.
+- Confirm significant actions.
+- Present operational feedback promptly.
+
+Interfaces shall remain synchronized with the underlying system state.
 
 ---
 
-# Future Interfaces
+# Interface Logging
 
-Future interfaces shall follow the same standards defined in this document.
+Significant operator interactions shall produce appropriate engineering evidence.
 
-Examples:
+Examples include:
 
-Maintenance Interface
+- Tournament creation
+- Match start
+- Match pause
+- Match resume
+- Result recording
+- Inspection approval
+- Configuration changes
+- Administrative actions
 
-Remote Event Dashboard
+Logging shall support:
 
-Statistics Dashboard
+- Operational review
+- Fault investigation
+- Engineering verification
+- System auditing
 
-Mobile Applications
+User-interface logging shall complement, rather than replace, application logging.
+
+---
+
+# Interface Engineering Governance
+
+These Interface Standards establish the constitutional expectations for every BattleStation user interface.
+
+They shall be applied together with:
+
+- Requirements Specification
+- Software Architecture
+- Style Guide
+- Coding Standards
+- Test Plan
+
+Visual appearance shall never override operational clarity.
+
+Interface implementation shall preserve the responsibilities assigned by the approved constitutional engineering baseline.
+
+Changes to interface behavior shall be reviewed before adoption into the constitutional baseline.
+
+---
+
+# Design Principles
+
+BattleStation interfaces shall:
+
+- Communicate system state clearly.
+- Remain predictable.
+- Support rapid decision making.
+- Prevent unsafe operation.
+- Minimize operator workload.
+- Preserve architectural responsibilities.
+- Remain consistent across all platforms.
+- Support future expansion without changing established interaction patterns.
+
+The interface exists to support dependable tournament operation.
 
 ---
 
 # Related Documents
 
-- 02_Glossary_and_Naming_Convention.md
-- 04_User_Roles.md
-- 05_System_Modules.md
-- 14_Software_Architecture.md
-- 19_Style_Guide.md
-- 20_Design_Principles.md
-- 21_Coding_Standards.md
+- `03_Version_Strategy.md`
+- `04_User_Roles.md`
+- `08_System_Definition.md`
+- `09_Requirements_Specification.md`
+- `14_Software_Architecture.md`
+- `16_Test_Plan.md`
+- `19_Style_Guide.md`
+- `20_Design_Principles.md`
+- `21_Coding_Standards.md`
