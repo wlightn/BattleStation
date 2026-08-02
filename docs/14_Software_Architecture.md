@@ -3,247 +3,533 @@
 | Item | Value |
 |------|-------|
 | Document | Software Architecture |
-| Version | 0.2 |
-| Status | Reviewed |
-| Last Updated | 2026-07-07 |
+| Version | 1.0 |
+| Status | Constitutional Baseline |
+| Last Updated | 2026-08-03 |
 
 ---
 
 # Purpose
 
-This document defines the software architecture of the BattleStation System.
+This document defines the constitutional software architecture of BattleStation.
 
-BattleStation is composed of modular software services that communicate through well-defined interfaces.
+The software architecture organizes BattleStation into cooperating Application Services that fulfill the responsibilities established by the constitutional system architecture.
 
-The software architecture follows the same modular philosophy as the hardware architecture.
+Each Application Service owns one primary responsibility and communicates with other services through documented interfaces.
 
----
+This document defines the architectural decomposition of the software.
 
-# Learning Approach
-
-BattleStation will be developed one module at a time.
-
-Each software module should be small enough to understand, test, and maintain independently.
-
-Development will prioritize clarity over cleverness.
-
-No code should be added to the project until its purpose and behavior are understood.
-
-The architecture may be professional, but implementation will be approached in small, teachable steps.
+Implementation details belong in the software implementation documentation.
 
 ---
 
-# Core Software Modules
+# Implementation Philosophy
 
-## Tournament Manager
+BattleStation software shall be developed incrementally.
 
-Responsible for overall event flow.
+Every software service shall remain:
 
-Responsibilities:
+- Understandable
+- Independently testable
+- Independently maintainable
+- Independently replaceable where practical
+- Focused on one primary responsibility
 
-- Create and load events
-- Open and close tournaments
-- Track tournament status
-- Coordinate registration, inspection, brackets, matches, awards, and reports
-- Maintain the overall tournament workflow
+Complex system behavior shall emerge through cooperation between simple services rather than from monolithic software.
 
----
+Development shall prioritize clarity over cleverness.
 
-## Registration Manager
-
-Responsible for competitor and robot registration.
-
-Responsibilities:
-
-- Create driver records
-- Create robot records
-- Support multiple robots per driver
-- Store robot photographs
-- Store weapon type information
-- Store robot weight
-- Support future returning competitor and robot lookup
+Software shall not be implemented until its purpose, responsibilities, interfaces, and expected behavior are understood.
 
 ---
 
-## Inspection Manager
+# BattleStation Application Services
 
-Responsible for robot inspection and approval.
+BattleStation Application Services implement the software responsibilities required for tournament operation.
 
-Responsibilities:
+Application Services coordinate tournament activities, maintain operational information, present user interfaces, and communicate with the BattleStation Core Controller.
 
-- Record official weight
-- Warn when weight exceeds class limits
-- Record inspection status
-- Record class-specific inspection requirements
-- Prevent unapproved robots from entering tournament brackets
+Application Services remain independent of the infrastructure hosting them.
 
 ---
 
-## Bracket Manager
+# Architectural Principles
 
-Responsible for tournament bracket management.
+Application Services shall:
 
-Responsibilities:
+- Own one primary responsibility.
+- Communicate through documented interfaces.
+- Remain implementation-independent.
+- Avoid unnecessary coupling.
+- Support independent testing.
+- Support future expansion.
+- Preserve architectural boundaries.
 
-- Generate double-elimination brackets
-- Randomize initial matchups
-- Assign byes when required
-- Advance winners
-- Advance losers
-- Determine current and next matches
+# Core Application Services
+
+The following services collectively implement the BattleStation Application Services.
+
+Each service owns one primary responsibility and communicates with other services through documented interfaces.
 
 ---
 
-## Match Engine
+# Tournament Service
 
-Responsible for match operation.
+## Purpose
 
-Responsibilities:
+The Tournament Service coordinates the overall operation of a BattleStation event.
+
+It serves as the central orchestration service for tournament activities.
+
+## Responsibilities
+
+- Create events
+- Load events
+- Open tournaments
+- Close tournaments
+- Coordinate tournament workflow
+- Coordinate subordinate application services
+- Maintain tournament operational state
+
+## Interfaces
+
+Communicates with:
+
+- Registration Service
+- Inspection Service
+- Bracket Service
+- Match Service
+- Reporting Services
+- Configuration Service
+
+## Design Notes
+
+The Tournament Service coordinates tournament activities but does not implement the specialized responsibilities of subordinate services.
+
+---
+
+# Registration Service
+
+## Purpose
+
+The Registration Service manages competitor and robot registration.
+
+## Responsibilities
+
+- Competitor registration
+- Robot registration
+- Multiple robots per competitor
+- Robot photographs
+- Weapon classification
+- Robot weight recording
+- Returning competitor lookup (future)
+
+## Interfaces
+
+Communicates with:
+
+- Tournament Service
+- Data Services
+
+## Design Notes
+
+Registration responsibilities remain isolated from tournament progression and match operation.
+
+---
+
+# Inspection Service
+
+## Purpose
+
+The Inspection Service verifies robot eligibility for tournament participation.
+
+## Responsibilities
+
+- Inspection recording
+- Weight verification
+- Class compliance
+- Safety verification
+- Inspection approval
+- Inspection notes
+
+## Interfaces
+
+Communicates with:
+
+- Tournament Service
+- Data Services
+
+## Design Notes
+
+Inspection determines tournament eligibility but does not modify tournament brackets directly.
+
+---
+
+# Bracket Service
+
+## Purpose
+
+The Bracket Service maintains tournament progression.
+
+## Responsibilities
+
+- Bracket generation
+- Initial competitor assignment
+- Bye assignment
+- Winner advancement
+- Loser advancement
+- Current match selection
+- Next match selection
+
+## Interfaces
+
+Communicates with:
+
+- Tournament Service
+- Match Service
+- Data Services
+
+## Design Notes
+
+The Bracket Service owns tournament progression.
+
+Other services consume bracket information but do not directly modify bracket structure.
+
+---
+
+# Match Service
+
+## Purpose
+
+The Match Service coordinates the execution of official tournament matches.
+
+## Responsibilities
 
 - Execute the Match State Machine
-- Control the official match timer
-- Track driver ready status
-- Handle pause and resume
-- Track unstick usage
-- Process Tap Out events
-- Record match results
+- Match timing
+- Driver Ready tracking
+- Pause handling
+- Resume handling
+- Tap Out processing
+- Match completion
+- Result recording
+
+## Interfaces
+
+Communicates with:
+
+- Tournament Service
+- Bracket Service
+- Hardware Communication Service
+- Data Services
+
+## Design Notes
+
+The Match Service owns match execution.
+
+Tournament progression remains the responsibility of the Bracket Service.
+
+# Supporting Application Services
+
+Supporting Application Services provide shared capabilities used throughout BattleStation.
+
+These services enable tournament operation while remaining independent of the core operational services.
 
 ---
 
-## Safety Manager
+# Safety Service
 
-Responsible for all safety-related system behavior.
+## Purpose
 
-Responsibilities:
+The Safety Service coordinates all software responses to monitored safety conditions.
 
-- Monitor arena door status
-- Process Emergency Stop events
-- Trigger Safety Stop
-- Activate alarms and warning beacons
-- Log safety events
-- Prevent unsafe match operation
+## Responsibilities
 
----
+- Process safety events
+- Evaluate safety conditions
+- Coordinate Safety Stop requests
+- Activate safety notifications
+- Record safety events
+- Prevent unsafe tournament operation
 
-## Hardware Interface
+## Interfaces
 
-Responsible for communication with BattleStation hardware modules.
+Communicates with:
 
-Responsibilities:
+- Match Service
+- Hardware Communication Service
+- Monitoring Services
+- Data Services
 
-- Communicate with the BattleStation Core Controller
-- Interface with the BattleStation Bus
-- Read Driver Station inputs
-- Read Referee Station inputs
-- Monitor module health
-- Send commands to lighting, alarms, and status indicators
-- Abstract hardware communication from higher-level software
+## Design Notes
 
----
+The Safety Service coordinates software behavior.
 
-## Web Server
-
-Provides the browser-based user interfaces.
-
-Provides the following interfaces:
-
-- Coordinator Station
-- Registration Station
-- Inspection Station
-- Public Display
-- Future Maintenance Interface
-- Future Administrative Interface
+Detection of physical safety conditions remains the responsibility of the BattleStation Core Controller and associated hardware modules.
 
 ---
 
-## Database Manager
+# Hardware Communication Service
 
-Responsible for persistent data storage.
+## Purpose
 
-Responsibilities:
+The Hardware Communication Service provides the software interface between BattleStation Application Services and the BattleStation Core Controller.
 
-- Events
-- Drivers
-- Robots
-- Tournament Classes
-- Inspections
-- Matches
-- Tournament Results
-- System Logs
+## Responsibilities
+
+- Exchange information with the Core Controller
+- Receive hardware status
+- Receive module status
+- Receive operator inputs
+- Transmit hardware commands
+- Abstract hardware communication from higher-level services
+
+## Interfaces
+
+Communicates with:
+
+- BattleStation Core Controller
+- Match Service
+- Safety Service
+- Monitoring Services
+
+## Design Notes
+
+Higher-level services remain independent of the underlying communication technology.
+
+---
+
+# Interface Services
+
+## Purpose
+
+Interface Services provide the operator and spectator interfaces used throughout BattleStation.
+
+## Responsibilities
+
+- Mission Control interface
+- Registration Station interface
+- Inspection Station interface
+- Public Display interface
+- Future Maintenance interface
+- Future Administrative interface
+
+## Interfaces
+
+Communicates with:
+
+- Tournament Service
+- Registration Service
+- Inspection Service
+- Match Service
+- Reporting Services
+
+## Design Notes
+
+Interface Services present information and collect user interaction.
+
+Business logic remains the responsibility of the underlying application services.
+
+---
+
+# Data Services
+
+## Purpose
+
+Data Services manage persistent BattleStation information.
+
+## Responsibilities
+
+- Event records
+- Competitor records
+- Robot records
+- Tournament classes
+- Inspection records
+- Match history
+- Tournament results
+- System logs
 - Reports
-- Future Career Statistics
+- Future historical statistics
+
+## Interfaces
+
+Communicates with all Application Services requiring persistent information.
+
+## Design Notes
+
+Data Services own data persistence.
+
+The underlying database technology is an implementation decision.
 
 ---
 
-## Reporting Manager
+# Reporting Services
 
-Responsible for generating tournament output.
+## Purpose
 
-Responsibilities:
+Reporting Services generate the official outputs of tournament operation.
+
+## Responsibilities
 
 - Final standings
-- Completed brackets
+- Tournament brackets
 - Match history
 - Event archive
 - Tournament reports
 - Future recap packages
 
+## Interfaces
+
+Communicates with:
+
+- Tournament Service
+- Data Services
+- Interface Services
+
+## Design Notes
+
+Reporting Services generate information but do not modify tournament operation.
+
 ---
 
-## Configuration Manager
+# Configuration Service
 
-Responsible for system configuration.
+## Purpose
 
-Responsibilities:
+The Configuration Service manages BattleStation operational configuration.
+
+## Responsibilities
 
 - Event settings
 - Tournament classes
 - Match duration
-- Arena reset timer
+- Arena reset timing
 - Inspection templates
-- Network configuration
 - Module configuration
 - System preferences
 
+## Interfaces
+
+Communicates with:
+
+- Tournament Service
+- Data Services
+- Monitoring Services
+
+## Design Notes
+
+The Configuration Service manages operational configuration.
+
+Organizational Configuration Management governs the configuration artifacts themselves.
+
 ---
 
-## System Monitor
+# Monitoring Services
 
-Responsible for diagnostics and system health.
+## Purpose
 
-Responsibilities:
+Monitoring Services provide operational diagnostics and health information.
 
-- BattleStation Server health
-- BattleStation Core Controller health
+## Responsibilities
+
+- Application health
+- Core Controller status
 - Module health
-- Network status
-- CPU usage
-- Memory usage
-- Error reporting
+- Communication health
+- Resource utilization
 - Startup diagnostics
-- System logging
+- Error reporting
+- Operational logging
+
+## Interfaces
+
+Communicates with all Application Services and the BattleStation Core Controller.
+
+## Design Notes
+
+Monitoring Services observe system health.
+
+They do not directly control tournament operation except through documented fault reporting mechanisms.
+
+# Service Interaction Principles
+
+BattleStation Application Services cooperate through clearly defined responsibilities and documented interfaces.
+
+Services shall exchange information without exposing unnecessary implementation details.
+
+Whenever practical:
+
+- Services shall communicate through published interfaces.
+- Services shall avoid direct dependence upon internal implementation details of other services.
+- Services shall remain independently testable.
+- Services shall support future replacement without unnecessary impact on unrelated services.
+
+Coordination between services shall remain explicit and understandable.
+
+---
+
+# Software Boundaries
+
+BattleStation software maintains the following architectural boundaries:
+
+## Application Services
+
+Responsible for tournament operation and business logic.
+
+Application Services coordinate tournament activities and present information to users.
+
+---
+
+## BattleStation Core Controller
+
+Responsible for field hardware coordination.
+
+The Core Controller abstracts distributed hardware and presents a consistent interface to the Application Services.
+
+---
+
+## BattleStation Bus
+
+Responsible for communication between the Core Controller and distributed BattleStation hardware modules.
+
+Application Services remain independent of the underlying communication technology.
+
+---
+
+## Infrastructure
+
+Infrastructure provides the computing environment in which BattleStation executes.
+
+Infrastructure responsibilities include services such as operating systems, databases, networking, storage, authentication, backups, and container hosting.
+
+BattleStation consumes these services but remains architecturally independent of their implementation.
 
 ---
 
 # Design Principles
 
-Every software module shall:
+BattleStation software shall:
 
-- Have a single responsibility.
-- Be independently testable.
-- Use documented interfaces.
-- Be replaceable without affecting unrelated modules.
+- Own one primary responsibility per service.
+- Communicate through documented interfaces.
+- Remain implementation-independent.
+- Preserve clear architectural boundaries.
+- Support independent testing.
+- Support independent maintenance.
 - Support future expansion.
-- Maintain separation between business logic and hardware communication.
+- Prefer composition over unnecessary complexity.
+- Favor readability over cleverness.
+- Remain understandable by future engineers.
 
 ---
 
 # Related Documents
 
-- 04_System_Modules.md
-- 05_Tournament_Workflow.md
-- 06_Match_State_Machine.md
-- 07_System_Definition.md
-- 08_Requirements_Specification.md
-- 09_Decision_Log.md
-- 17_Design_Principles.md
+- `05_System_Modules.md`
+- `08_System_Definition.md`
+- `09_Requirements_Specification.md`
+- `10_Engineering_Decision_Records.md`
+- `13_Hardware_BOM.md`
+- `15_Wiring_Architecture.md`
+- `16_Test_Plan.md`
+- `20_Design_Principles.md`
