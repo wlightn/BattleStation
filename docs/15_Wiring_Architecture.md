@@ -3,176 +3,293 @@
 | Item | Value |
 |------|-------|
 | Document | Wiring Architecture |
-| Version | 0.2 |
-| Status | Reviewed |
-| Last Updated | 2026-07-08 |
+| Version | 1.0 |
+| Status | Constitutional Baseline |
+| Last Updated | 2026-08-03 |
 
 ---
 
 # Purpose
 
-This document defines the physical communication architecture of the BattleStation System.
+This document defines the constitutional hardware communication architecture used by BattleStation.
 
-The objective is to provide a clean, modular, reliable wiring system that is easy to assemble, troubleshoot, transport, maintain, and expand.
+The Wiring Architecture specifies how the BattleStation Core Controller communicates with distributed BattleStation hardware modules through the BattleStation Bus (BSBus).
 
-The wiring architecture supports the BattleStation design philosophy of creating a professional, commercial-quality event management system.
+This document establishes:
+
+- Hardware communication architecture
+- Communication topology
+- Module interconnection
+- Startup verification
+- Module discovery
+- Fault handling philosophy
+- Wiring design principles
+
+Electrical schematics, PCB layouts, and cable drawings belong within the hardware implementation documentation.
 
 ---
 
-# Design Philosophy
+# Communication Philosophy
 
-BattleStation wiring shall:
+BattleStation communication shall be:
 
-- Minimize cable clutter.
-- Support modular installation.
-- Allow rapid module replacement.
-- Support multiple arena sizes.
-- Use standardized connectors and cables.
-- Be easy to troubleshoot.
-- Separate communication from high-current power whenever practical.
+- Modular
+- Reliable
+- Serviceable
+- Replaceable
+- Expandable
+- Understandable
+- Independent of application software whenever practical
+
+The communication architecture shall remain independent of any specific physical communication technology whenever practical.
+
+Communication responsibilities shall remain stable even as implementation technologies evolve.
 
 ---
 
 # BattleStation Bus (BSBus)
 
-The BattleStation Bus (BSBus) is the primary communication network connecting the BattleStation Core Controller to distributed BattleStation hardware modules.
+BattleStation Bus (BSBus) is the constitutional communication standard for BattleStation hardware.
 
-The BSBus standard defines:
+BSBus defines the logical communication architecture connecting the BattleStation Core Controller with distributed hardware modules.
 
-- Communication protocol
-- Module addressing
-- Device discovery
+BSBus specifies:
+
+- Communication behavior
+- Module identification
+- Module discovery
 - Health monitoring
 - Status reporting
+- Fault reporting
 - Firmware compatibility
 
-The BattleStation Bus standard is independent of the physical communication layer.
+BSBus defines the communication standard.
+
+It does not prescribe a specific physical communication technology.
 
 ---
 
-# Physical Layer
+# Architectural Principles
 
-Initial implementation:
+BattleStation Bus shall:
 
-- CAN Bus
+- Support modular hardware.
+- Support future hardware expansion.
+- Provide deterministic communication.
+- Support automatic module discovery.
+- Support module health monitoring.
+- Isolate communication failures whenever practical.
+- Remain independent of the selected physical communication implementation.
 
-Future versions may utilize alternative communication technologies while maintaining BattleStation Bus compatibility.
+# Preferred Physical Implementation
+
+The following implementation represents the approved communication approach for BattleStation Version 1.
+
+Future versions may adopt different physical communication technologies while remaining compliant with the BattleStation Bus (BSBus) architectural standard.
 
 ---
 
-# Cabling
+# Physical Communication Layer
 
-Preferred communication cable:
+## Preferred Implementation
 
-- CAT6 Ethernet Cable
+Controller Area Network (CAN Bus)
 
-Reasons:
+**Status:** Candidate
 
-- Widely available
+---
+
+## Engineering Rationale
+
+CAN Bus is currently preferred because it provides:
+
+- Reliable multi-device communication
+- Robust error detection
+- Deterministic message delivery
+- Wide industry adoption
+- Excellent electrical noise immunity
+- Long cable capability suitable for tournament environments
+- Support for distributed embedded controllers
+
+Selection of CAN Bus does not make CAN the BattleStation architecture.
+
+CAN is the preferred physical implementation of the BSBus communication standard.
+
+---
+
+# Communication Cabling
+
+## Preferred Implementation
+
+Category 6 (CAT6) cable
+
+**Status:** Candidate
+
+---
+
+## Engineering Rationale
+
+CAT6 cable is preferred because it is:
+
 - Inexpensive
-- Multiple standard lengths
-- Rugged
-- Easy field replacement
-- Locking connectors
-- Supports modular installation
+- Widely available
+- Mechanically robust
+- Available in standardized lengths
+- Easy to replace during tournament operation
+- Readily obtainable from commercial suppliers
 
-Multiple cable lengths may be used to accommodate different arena sizes.
+The cable serves as a standardized multi-conductor communication medium.
+
+Its use does not imply Ethernet communication.
 
 ---
 
-# Connectors
+# Communication Connectors
 
-Preferred connector:
+## Preferred Implementation
 
-- RJ45
+RJ45
 
-Advantages:
+**Status:** Candidate
+
+---
+
+## Engineering Rationale
+
+RJ45 connectors are currently preferred because they provide:
 
 - Low cost
-- Locking mechanism
-- Easy replacement
-- Industry standard
-- Readily available
+- Positive locking
+- Commercial availability
+- Rapid field replacement
+- Familiar installation procedures
+- Standardized cable assemblies
+
+Connector selection remains independent of the communication protocol.
+
+Future physical implementations may utilize different connector systems while preserving BSBus compatibility.
 
 ---
+
+# Server-to-Core Controller Communication
+
+## Preferred Implementation
+
+Ethernet
+
+**Status:** Candidate
+
+---
+
+## Engineering Rationale
+
+A single high-speed communication link between BattleStation Application Services and the BattleStation Core Controller simplifies system integration while maintaining clear architectural separation.
+
+Alternative implementations may be adopted if they continue to satisfy:
+
+- Required communication performance
+- Reliability
+- Serviceability
+- Architectural independence
+
+The communication interface remains implementation-independent.
+
+---
+
+# Module Power Distribution
+
+Communication wiring and power distribution shall remain separate whenever practical.
+
+Low-power modules may receive power through the communication cable when engineering analysis demonstrates that doing so does not compromise:
+
+- Reliability
+- Electrical safety
+- Serviceability
+- Future expansion
+
+Modules with higher power requirements shall utilize dedicated power distribution while continuing to communicate through BattleStation Bus.
 
 # Network Topology
 
-BattleStation Bus utilizes a daisy-chain topology.
+BattleStation Bus utilizes a distributed communication topology connecting the BattleStation Core Controller with hardware modules deployed throughout the event.
 
-```
+The preferred Version 1 implementation uses a daisy-chain topology.
+
+```text
 BattleStation Core Controller
-        │
-Driver Station
-        │
-Lighting Module
-        │
-Safety Module
-        │
-Referee Station
-        │
-Termination
+           │
+     Driver Station
+           │
+    Lighting Module
+           │
+   Arena Safety Module
+           │
+    Referee Station
+           │
+       Bus Termination
 ```
 
-Modules may include integrated pass-through connectors to reduce cable clutter and simplify installation.
+Integrated pass-through connections are preferred whenever practical to reduce installation complexity, cable clutter, and field setup time.
 
----
-
-# Module Power
-
-Communication wiring shall remain independent of module power whenever practical.
-
-Low-power modules may receive power through the communication cable.
-
-High-current modules shall use local power while remaining connected to the BattleStation Bus for communication.
-
-Examples include:
-
-- Arena Lighting
-- Audible Alarm
-- Future high-power devices
+Future topologies may be adopted provided they remain compliant with the BattleStation Bus architectural standard.
 
 ---
 
 # Module Discovery
 
-Each module shall:
+The BattleStation Core Controller shall automatically discover connected BattleStation hardware modules during system startup.
 
-- Possess a unique address.
-- Identify its module type.
-- Report firmware version.
-- Report health status.
-- Report fault conditions.
+Each module shall provide sufficient information to identify itself and support compatibility verification.
 
-The BattleStation Core Controller shall automatically discover connected modules during startup.
+Minimum module information includes:
+
+- Unique module identifier
+- Module type
+- Firmware version
+- Operational status
+- Health status
+- Fault status
+
+Additional module capabilities may be reported as future versions of BattleStation evolve.
+
+Automatic discovery reduces configuration effort while improving installation, maintenance, and troubleshooting.
 
 ---
 
 # Startup Verification
 
-Before tournament operation begins, BattleStation shall perform a complete startup verification sequence.
+Before BattleStation enters operational service, the BattleStation Core Controller shall perform a complete startup verification sequence.
 
-The verification process ensures that all required hardware and software components are operating correctly before allowing tournament operation.
+The purpose of startup verification is to establish confidence that the required hardware communication architecture is operational before tournament activities begin.
 
-The system shall verify:
+Startup verification shall confirm:
 
 - Required modules are present.
-- Communication has been established with required modules.
-- Module firmware is compatible with the installed BattleStation software.
-- No critical faults are active.
-- Optional modules are detected when available.
+- Communication has been established.
+- Firmware compatibility requirements are satisfied.
+- Required modules report healthy operational status.
+- No active critical faults exist.
+- Optional modules are identified when present.
 
----
+Startup verification results shall be communicated to BattleStation Application Services for presentation to the Tournament Coordinator.
+
+Tournament operation shall not begin until startup verification has completed successfully or authorized operational procedures have been followed.
 
 # Module Classification
 
-Every BattleStation module shall be assigned one of three classifications.
+BattleStation hardware modules are classified according to their impact on tournament operation.
 
-## Critical
+Module classification determines startup requirements, fault handling, and operational behavior.
 
-Failure prevents safe or reliable tournament operation.
+---
 
-Examples:
+## Critical Modules
+
+Failure of a Critical module prevents safe or dependable tournament operation.
+
+Critical module failures shall prevent tournament operation until the fault has been corrected.
+
+Examples include:
 
 - BattleStation Server
 - BattleStation Core Controller
@@ -180,51 +297,55 @@ Examples:
 - Referee Station
 - Arena Safety Module
 
-Critical module failures prevent match operation.
-
 ---
 
-## Operational
+## Operational Modules
 
-Failure impacts tournament efficiency, but tournament operation may continue using manual procedures.
+Failure of an Operational module affects tournament efficiency but does not necessarily prevent tournament operation.
 
-Examples:
+Operational module failures shall generate warnings and may require manual operating procedures.
+
+Examples include:
 
 - Registration Station
 - Inspection Station
 - Public Display
 
-Operational failures generate coordinator warnings but do not prevent tournament operation.
-
 ---
 
-## Optional
+## Optional Modules
 
-Failure has little or no impact on tournament operation.
+Optional modules provide additional functionality but are not required for normal tournament operation.
 
-Examples:
+Failure of Optional modules shall not prevent tournament operation.
+
+Examples include:
 
 - Pit Audio
 - Video Interface
-- Future Wireless Displays
-- Future Statistics Modules
-
-Optional module failures shall never prevent tournament operation.
+- Future Information Displays
+- Future Expansion Modules
 
 ---
 
 # Startup Results
 
-Following startup verification, BattleStation shall report one of the following system states.
+Following startup verification, the BattleStation Core Controller shall determine the hardware readiness state.
+
+BattleStation Application Services shall determine the overall operational readiness state using this information.
+
+Three readiness states are defined.
+
+---
 
 ## System Ready
 
-All Critical modules are:
+All required Critical modules:
 
-- Present
-- Communicating
-- Firmware compatible
-- Free of critical faults
+- Are present
+- Are communicating
+- Report compatible firmware
+- Report healthy operational status
 
 Tournament operation may begin.
 
@@ -238,93 +359,71 @@ One or more Operational or Optional modules report warnings.
 
 Tournament operation may begin.
 
-Warnings shall be displayed to the coordinator.
+Warnings shall be presented to the Tournament Coordinator.
 
 ---
 
 ## System Not Ready
 
-One or more Critical modules are:
+One or more Critical modules:
 
-- Missing
-- Offline
-- Running incompatible firmware
-- Reporting critical faults
+- Are missing
+- Are not communicating
+- Report incompatible firmware
+- Report critical faults
 
-Tournament operation shall remain disabled until the issue is resolved.
+Tournament operation shall remain disabled until the condition has been resolved.
 
 ---
 
-# Optional Module Alarm Control
+# Optional Module Management
 
-The coordinator shall be able to enable or disable monitoring of Optional modules.
+BattleStation shall allow the Tournament Coordinator to enable or disable monitoring of Optional modules.
 
 Disabled Optional modules shall:
 
 - Not generate active alarms.
-- Not appear as active faults.
-- Continue to appear on the System Health page.
+- Not prevent tournament operation.
+- Continue appearing within System Health.
 - Be clearly identified as Disabled.
-- Continue to be recorded in the system log.
+- Continue to be recorded within operational logs.
 
-This allows BattleStation to support tournaments that choose not to deploy every available hardware module.
-
-Examples:
-
-- Pit Audio disabled
-- Video Interface disabled
-- Wireless Display disabled
-- Future expansion modules disabled
+This capability allows BattleStation to support events that intentionally deploy only a subset of available hardware modules.
 
 ---
 
-# Coordinator Override
+# Coordinator Acknowledgements
 
-BattleStation shall allow the coordinator to acknowledge selected startup warnings.
+The Tournament Coordinator may acknowledge selected startup warnings.
 
-Coordinator acknowledgements shall:
+Acknowledgements shall:
 
-- Be recorded in the system log.
-- Be displayed on the System Health page.
+- Be recorded within the operational log.
+- Appear within System Health.
 - Be included within the Event Report.
 
-Critical Safety faults shall never be overridable.
+Coordinator acknowledgements shall never override Critical Safety faults.
 
-Examples of acceptable acknowledgements:
+Examples of acceptable acknowledgements include:
 
 - Public Display unavailable
-- Registration laptop unavailable after registration closes
+- Registration Station unavailable after registration closes
 - Optional modules intentionally disabled
 
-Examples of non-overridable faults:
+Examples of non-overridable conditions include:
 
-- Arena Door Safety fault
+- Arena Safety Module failure
 - Driver Station communication failure
 - BattleStation Core Controller failure
 - BattleStation Server failure
 
 ---
 
-# Expandability
-
-The BattleStation Bus shall support future hardware modules without requiring changes to existing modules.
-
-Future modules may include:
-
-- Additional Driver Stations
-- Video Controller
-- Scoreboards
-- Wireless Bridges
-- Environmental Sensors
-- Future Arena Systems
-
----
-
 # Fault Philosophy
 
-Every detected fault shall have an intentional system response.
+Every detected hardware fault shall have a defined and intentional system response.
 
-Fault responses shall be classified as one of the following:
+Fault responses are classified as:
 
 - Ignore
 - Warning
@@ -333,30 +432,76 @@ Fault responses shall be classified as one of the following:
 
 Critical Safety faults shall always result in Lockout.
 
-Optional module faults shall normally generate Warnings or be Ignored when disabled by the coordinator.
+Operational module faults shall normally result in Warning.
+
+Optional module faults shall normally result in Warning or Ignore when intentionally disabled.
+
+Fault responses shall remain predictable, documented, and consistent throughout BattleStation.
+
+# Expandability
+
+The BattleStation Wiring Architecture shall support future hardware expansion without requiring redesign of existing hardware modules whenever practical.
+
+Future BattleStation hardware may include, but is not limited to:
+
+- Additional Driver Stations
+- Additional Referee Stations
+- Video Interface Modules
+- Arena Scoreboards
+- Wireless Communication Bridges
+- Environmental Monitoring Modules
+- Additional Safety Devices
+- Future BattleStation hardware modules
+
+Expansion shall occur through documented BattleStation Bus interfaces while preserving compatibility with existing architectural responsibilities.
+
+---
+
+# Wiring Architecture Governance
+
+The Wiring Architecture is the constitutional engineering reference for BattleStation hardware communication.
+
+This document defines the architectural rules governing:
+
+- Hardware communication
+- Module interconnection
+- Startup verification
+- Hardware communication topology
+- Module discovery
+- Fault handling philosophy
+
+Electrical schematics, PCB layouts, wiring harnesses, cable assemblies, connector pinouts, and manufacturing documentation shall conform to this architecture.
+
+Implementation documents may evolve without requiring changes to this architectural baseline provided they continue to satisfy the approved architectural responsibilities.
 
 ---
 
 # Design Principles
 
-The BattleStation wiring architecture shall:
+The BattleStation Wiring Architecture shall:
 
 - Remain modular.
-- Use standardized connectors.
-- Minimize installation time.
-- Support rapid troubleshooting.
-- Support future expansion.
-- Separate hardware communication from application software.
-- Remain independent of the BattleStation Server computing platform.
+- Support independent hardware modules.
+- Use standardized communication interfaces.
+- Minimize installation complexity.
+- Support rapid field replacement.
+- Support efficient troubleshooting.
+- Separate communication from application software.
+- Separate communication from power distribution whenever practical.
+- Support future hardware expansion.
+- Remain independent of any specific communication technology.
+- Preserve clear architectural boundaries.
+- Favor dependable operation over implementation convenience.
 
 ---
 
 # Related Documents
 
-- 04_System_Modules.md
-- 07_System_Definition.md
-- 08_Requirements_Specification.md
-- 09_Decision_Log.md
-- 12_Hardware_BOM.md
-- 13_Software_Architecture.md
-- 17_Design_Principles.md
+- `05_System_Modules.md`
+- `08_System_Definition.md`
+- `09_Requirements_Specification.md`
+- `10_Engineering_Decision_Records.md`
+- `13_Hardware_BOM.md`
+- `14_Software_Architecture.md`
+- `16_Test_Plan.md`
+- `20_Design_Principles.md`
