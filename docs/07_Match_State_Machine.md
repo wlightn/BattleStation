@@ -1,176 +1,161 @@
-## Match States
+# Match State Machine
 
-### Idle
+| Item | Value |
+|------|-------|
+| Document | Match State Machine |
+| Version | 1.0 |
+| Status | Constitutional Baseline |
+| Last Updated | 2026-08-03 |
+
+---
+
+# Purpose
+
+This document defines the official BattleStation match state machine.
+
+The Match State Machine governs the lifecycle of a single tournament match.
+
+Every BattleStation match shall progress through these states using documented transitions.
+
+No implementation may introduce additional operational states without constitutional revision.
+
+---
+
+# State Machine Philosophy
+
+The Match State Machine exists to ensure:
+
+- Safe tournament operation
+- Predictable system behavior
+- Consistent operator experience
+- Repeatable software implementation
+- Complete event traceability
+
+Each state has one clearly defined purpose.
+
+Every transition shall occur intentionally and shall be recorded by BattleStation.
+
+---
+
+# Match States
+
+## Idle
+
 No match is currently active.
 
-### Match Queued
-A match has been selected from the bracket and is ready to begin setup.
-
-### Drivers Called
-The assigned drivers have been called to the arena.
-
-### Introductions
-BattleStation presents the match, drivers, and robots.
-
-### Waiting for Ready
-Both drivers must press the Ready button before the match can begin.
-
-### Countdown
-BattleStation performs the pre-match countdown.
-
-### Running
-The match timer is active and the match is in progress.
-
-### Paused
-The match timer is stopped due to an unstick, referee pause, coordinator pause, arena issue, or safety event.
-
-### Safety Stop
-The match has been stopped due to an automatic safety trigger such as the arena door opening during an active match.
-
-### Match Complete
-The match has ended and is waiting for the result to be confirmed.
-
-### Result Recorded
-The winner has been recorded and the bracket has been advanced.
-
-### Arena Reset
-A reset timer runs between matches while the arena is cleaned and the next match is prepared.
+BattleStation is awaiting selection of the next scheduled match.
 
 ---
 
-## Normal Match Flow
+## Match Queued
 
-```text
-Idle
-  ↓
-Match Queued
-  ↓
-Drivers Called
-  ↓
-Introductions
-  ↓
-Waiting for Ready
-  ↓
-Countdown
-  ↓
-Running
-  ↓
-Match Complete
-  ↓
-Result Recorded
-  ↓
-Arena Reset
-  ↓
-Match Queued
-```
+A match has been selected from the tournament bracket.
+
+BattleStation prepares the required information and resources before driver notification.
 
 ---
 
-## Pause Flow
+## Drivers Called
 
-```text
-Running
-   ↓
-Paused
-   ↓
-Countdown (optional)
-   ↓
-Running
-```
+The assigned competitors have been instructed to report to the arena.
 
-A paused match may either resume immediately or restart with a short countdown.
+BattleStation monitors progress toward match readiness.
 
 ---
 
-## Safety Stop Flow
+## Introductions
 
-```text
-Running
-   ↓
-Safety Stop
-   ↓
-Paused
-   ↓
-Countdown
-   ↓
-Running
-```
+BattleStation presents:
 
-The referee or coordinator determines whether the match resumes or ends.
+- Match information
+- Driver names
+- Robot names
+- Arena presentation information
+
+This state prepares competitors, officials, and spectators for match start.
 
 ---
 
-## Match Completion
+## Waiting for Ready
 
-A match may end by:
+BattleStation waits for all required Driver Ready confirmations.
 
-- Timer expiration
-- Tap Out
-- Knockout
-- Referee decision
-- Coordinator override
-- Safety Stop
-
-After completion:
-
-1. Winner is selected.
-2. Match result is stored.
-3. Bracket advances automatically.
-4. Public display updates.
-5. Arena Reset begins.
+The system shall not advance until all required readiness conditions have been satisfied or an authorized override has been performed.
 
 ---
 
-## Unstick Tracking
+## Countdown
 
-Each competitor is allowed one unstick attempt per match.
+BattleStation performs the official pre-match countdown.
 
-BattleStation records:
+Safety monitoring remains active throughout this state.
 
-- Red Driver Unstick Used
-- Blue Driver Unstick Used
-- Match Time Remaining
-- Reason for Pause
-- Time of Event
+Successful completion advances the system to Running.
 
 ---
 
-## Door Safety
+## Running
 
-The arena door sensor is only active during:
+The official match is in progress.
 
-- Countdown
-- Running
+BattleStation manages:
 
-The arena door sensor is ignored during:
-
-- Idle
-- Match Queued
-- Drivers Called
-- Introductions
-- Waiting for Ready
-- Paused
-- Match Complete
-- Result Recorded
-- Arena Reset
-
-If the door opens during an active match:
-
-1. Match timer stops immediately.
-2. State changes to Safety Stop.
-3. Red beacon begins flashing.
-4. Audible alarm sounds.
-5. Public display shows a safety warning.
-6. Event is written to the system log.
-7. Coordinator or Referee must acknowledge before continuing.
+- Match timer
+- Match state
+- Safety monitoring
+- Referee requests
+- Driver requests
+- System monitoring
 
 ---
 
-## Design Principles
+## Paused
 
-- Every match follows the same state machine.
-- Hardware buttons and software controls perform identical actions.
-- Every state transition is logged.
-- The Public Display always reflects the current match state.
-- The BattleStation Core display always shows the current state.
-- Safety always overrides normal tournament operation.
+The official match timer is suspended.
+
+Pause may occur because of:
+
+- Referee request
+- Battle Commander request
+- Unstick
+- Arena issue
+- Other authorized operational events
+
+---
+
+## Safety Stop
+
+BattleStation has automatically interrupted the match because a monitored safety condition requires immediate action.
+
+Tournament operation remains suspended until the required acknowledgement and recovery procedures have completed.
+
+---
+
+## Match Complete
+
+The official match has ended.
+
+BattleStation awaits confirmation of the official match result.
+
+---
+
+## Result Recorded
+
+The official result has been accepted.
+
+BattleStation records the result and advances the tournament bracket.
+
+---
+
+## Arena Reset
+
+BattleStation prepares for the next scheduled match.
+
+During Arena Reset:
+
+- Arena Crew services the arena.
+- Public information is updated.
+- Next competitors may be notified.
+- Reset timing is displayed where appropriate.
+
+Successful completion returns BattleStation to Match Queued.
