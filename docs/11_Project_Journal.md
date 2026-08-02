@@ -3,19 +3,21 @@
 | Item | Value |
 |------|-------|
 | Document | Project Journal |
-| Version | 0.1 |
+| Version | 1.0 |
 | Status | Active |
-| Last Updated | 2026-07-08 |
+| Last Updated | 2026-08-03 |
 
 ---
 
 # Purpose
 
-The Project Journal records significant milestones, engineering discussions, architectural discoveries, and major project events.
+The Project Journal preserves the engineering history of the BattleStation project.
 
-Unlike the Decision Log, which records finalized decisions, the Project Journal captures the story of the project's development.
+Unlike Engineering Decision Records, which document accepted architectural decisions, the Project Journal records the discoveries, discussions, milestones, experiments, and observations that shaped the project.
 
-This document provides historical context for future development.
+The journal provides historical context for future engineers by explaining how BattleStation evolved over time.
+
+Entries are intentionally chronological and should preserve the engineering story without attempting to rewrite history.
 
 ---
 
@@ -25,102 +27,138 @@ This document provides historical context for future development.
 
 ## 2026-07-03
 
-### Project Organization
+### Project Foundation
 
-The BattleStation GitHub repository was created.
+The BattleStation repository was established.
 
-Development documentation was established before software implementation.
+A documentation-first engineering methodology was adopted before software implementation began.
 
-Project philosophy adopted:
-
-Documentation first.
+Initial constitutional planning for Chapter 1 commenced.
 
 ---
 
 ## 2026-07-04
 
-### Repository Structure
+### Repository Organization
 
 Project documentation expanded into individual engineering documents.
 
-Version buckets established.
+Version Buckets were established.
 
 Mission Statement completed.
 
 User Roles completed.
 
+Early repository organization began defining BattleStation as an engineering project rather than a software project.
+
 ---
 
 ## 2026-07-05
 
-### Hardware Philosophy
+### Hardware Architecture
 
 BattleStation architecture evolved toward modular hardware.
 
-The concept of pass-through hardware modules was introduced.
+The BattleStation Bus concept was introduced.
 
-Arena dimensions documented:
+Pass-through hardware modules were proposed.
 
-6 ft × 6 ft × 3 ft.
+Arena dimensions were documented for the initial Battle of Bots deployment.
 
-BattleStation Bus concept introduced.
+Early discussions began separating architectural responsibilities from implementation details.
 
 ---
 
 ## 2026-07-06
 
-### Architecture Expansion
+### Architectural Expansion
 
-Tournament workflow completed.
+Tournament Workflow completed.
 
 Match State Machine completed.
 
 Requirements Specification established.
 
-Software Architecture completed.
+Software Architecture initiated.
 
-BattleStation Bus standardized.
+Mission Control became the primary operational interface.
 
-Mission Control concept introduced.
-
-Battle Commander proposed as primary operator title.
+Battle Commander emerged as the preferred operational role.
 
 ---
 
 ## 2026-07-07
 
-### Compute Platform
+### Compute Platform Evolution
 
-BattleStation architecture transitioned from Raspberry Pi to BattleStation Server.
+Early architecture separated tournament management from field hardware coordination.
 
-Decision made to separate the BattleStation Server from the BattleStation Core Controller.
+This work eventually evolved into the constitutional distinction between:
 
-This significantly improved future upgradeability and serviceability.
+- BattleStation Application Services
+- BattleStation Core Controller
 
----
-
-## Lessons Learned
-
-This section captures observations that may influence future engineering decisions.
-
-(Currently empty)
+The architectural focus shifted from implementation technologies toward enduring responsibilities.
 
 ---
 
-## Future Ideas
+## 2026-08
 
-This section records ideas that are not yet formal decisions.
+### Constitutional Review (CR-1)
 
-(Currently empty)
+Chapter 1 entered its first Constitutional Review.
+
+Rather than redesigning the architecture, the review refined documentation, clarified responsibilities, removed duplicated concepts, and aligned every document with the emerging wLIGHTn organizational model.
+
+The review confirmed that the original architecture had matured successfully and required refinement rather than reinvention.
 
 ---
 
-## Milestone History
+# Engineering Discoveries
 
-Milestone 1
+This section records discoveries that influence engineering philosophy without necessarily becoming formal Engineering Decision Records.
 
-Status:
+Examples include:
 
-In Progress
+- Responsibilities outlive implementations.
+- Architectural names should survive implementation changes.
+- Projects consume organizational standards rather than duplicating them.
+- Modules own responsibilities rather than technologies.
 
-Architecture and documentation phase.
+Additional discoveries should be appended as they occur.
+
+---
+
+# Lessons Learned
+
+Lessons Learned capture practical experience gained through engineering, implementation, testing, or event operation.
+
+Unlike Engineering Discoveries, Lessons Learned focus on experience rather than architecture.
+
+This section intentionally remains empty until implementation and testing provide real operational evidence.
+
+---
+
+# Future Ideas
+
+Future Ideas capture observations, concepts, and possibilities that may influence future engineering work.
+
+Items recorded here are not commitments and shall not be interpreted as approved requirements or architectural decisions.
+
+---
+
+# Milestone History
+
+## Milestone 1 — Building the Foundation
+
+**Status:** In Progress
+
+Chapter 1 establishes the constitutional engineering baseline for BattleStation.
+
+Completion requires successful passage of:
+
+- Engineering Review (ER-1)
+- Constitutional Review (CR-1)
+- Blind Review (BR-1)
+
+before Chapter 1 may be accepted as the official engineering foundation for BattleStation Version 1.
