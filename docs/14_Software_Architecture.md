@@ -528,7 +528,7 @@ BattleStation software shall:
 - `05_System_Modules.md`
 - `08_System_Definition.md`
 - `09_Requirements_Specification.md`
-- `10_Engineering_Decision_Records.md`
+- `10_Decision_Log.md`
 - `13_Hardware_BOM.md`
 - `15_Wiring_Architecture.md`
 - `16_Test_Plan.md`

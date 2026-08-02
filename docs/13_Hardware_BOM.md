@@ -200,7 +200,7 @@ Hardware selections may evolve provided they continue to satisfy approved archit
 - `05_System_Modules.md`
 - `08_System_Definition.md`
 - `09_Requirements_Specification.md`
-- `10_Engineering_Decision_Records.md`
+- `10_Decision_Log.md`
 - `12_Development_Roadmap.md`
 - `14_Software_Architecture.md`
 - `15_Wiring_Architecture.md`

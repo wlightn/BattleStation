@@ -449,7 +449,7 @@ BattleStation software engineering shall:
 # Related Documents
 
 - `09_Requirements_Specification.md`
-- `10_Engineering_Decision_Records.md`
+- `10_Decision_Log.md`
 - `12_Development_Roadmap.md`
 - `14_Software_Architecture.md`
 - `16_Test_Plan.md`
