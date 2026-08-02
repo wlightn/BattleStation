@@ -1,149 +1,224 @@
 # BattleStation Design Principles
 
-## Purpose
-
-This document defines the engineering principles that guide the design and development of the BattleStation System.
-
-Whenever multiple design options exist, the preferred solution should be the one that best follows these principles.
-
----
-
-# 1. Professional First
-
-BattleStation should look, feel, and operate like a commercial event management system—not a DIY electronics project.
-
-Professional appearance, user experience, and reliability should influence every design decision.
-
-**Project Motto**
-
-> "BattleStation should look, feel, and operate like a commercial event management system."
+| Item | Value |
+|------|-------|
+| Document | Design Principles |
+| Version | 1.0 |
+| Status | Constitutional Baseline |
+| Last Updated | 2026-08-03 |
 
 ---
 
-# 2. Thoughtful Engineering
+# Purpose
 
-BattleStation is engineered as a complete system rather than a collection of individual components.
+This document defines the constitutional engineering principles that guide the design, development, verification, and long-term evolution of the BattleStation System.
 
-Every module should have a clearly defined purpose and interface.
+These principles establish the engineering philosophy used whenever architectural or implementation decisions require judgment beyond explicit requirements.
 
-**Engineering Motto**
+Requirements define what BattleStation shall do.
 
-> "Professional tournament management through thoughtful engineering."
+Architecture defines how responsibilities are organized.
 
----
-
-# 3. Safety Before Convenience
-
-Safety always takes priority over tournament operation.
-
-Whenever a conflict exists between convenience and safety, BattleStation shall favor the safer solution.
-
-Examples include:
-
-- Arena door monitoring
-- Emergency stop handling
-- Match interruption
-- Hardware fault detection
+Design Principles guide how engineering decisions are made.
 
 ---
 
-# 4. Keep the Tournament Moving
+# Engineering Philosophy
 
-Every feature should accomplish at least one of the following:
+BattleStation is engineered through disciplined discovery.
 
-- Reduce coordinator workload
-- Improve tournament flow
-- Improve competitor experience
-- Improve spectator experience
+Engineering is not the process of inventing a system.
 
-Features that do not contribute to these goals should be carefully evaluated before implementation.
+Engineering is the disciplined process of discovering, documenting, verifying, and preserving the architecture that best satisfies the enduring responsibilities of the system.
 
----
+The objective is not merely to build BattleStation.
 
-# 5. Offline First
-
-BattleStation must operate entirely on a private local network.
-
-Internet connectivity is optional and shall never be required for tournament operation.
+The objective is to build BattleStation correctly.
 
 ---
 
-# 6. Modular Architecture
+# Constitutional Principles
 
-BattleStation is composed of independent modules.
+These principles apply throughout every phase of BattleStation engineering.
 
-Modules communicate through well-defined interfaces and should be replaceable or upgradeable without redesigning the entire system.
+When multiple acceptable solutions exist, the solution that best satisfies these principles should normally be preferred.
 
----
+# Constitutional Engineering Principles
 
-# 7. Simplicity for the User
+## 1. Professional Engineering
 
-Every user interface should present only the controls and information appropriate for that user's role.
+BattleStation shall be engineered as a dependable, professional system.
 
-Users should never be overwhelmed with unnecessary information.
+Every engineering decision should contribute to a system that is reliable, maintainable, understandable, and suitable for operational use.
 
----
-
-# 8. Standardize Everything
-
-Whenever practical, BattleStation should standardize:
-
-- Connectors
-- Wiring
-- Hardware modules
-- Enclosures
-- Software interfaces
-- Documentation
-- Naming conventions
-
-Standardization reduces maintenance and improves reliability.
+BattleStation should look, feel, and operate like a professional event management system.
 
 ---
 
-# 9. Documentation Before Implementation
+## 2. Responsibility Before Implementation
 
-Major architectural decisions should be documented and reviewed before implementation begins.
+Engineering shall organize the system around enduring responsibilities rather than specific technologies.
 
-The repository documentation is the official source of truth.
+Responsibilities should remain stable even as implementations evolve.
 
----
+Requirements define behavior.
 
-# 10. Version 1 Before Version 2
+Architecture assigns responsibility.
 
-Version 1.0 should be completed before Version 2 enhancements are implemented.
-
-Ideas are never discarded—they are placed into the appropriate development bucket.
+Implementation realizes the architecture.
 
 ---
 
-# 11. Design for Growth
+## 3. Safety Above Convenience
 
-Every component should be designed with future expansion in mind.
+Safety shall always take precedence over operational convenience.
 
-The architecture should support new tournament classes, additional hardware modules, improved software, and future event formats without requiring major redesign.
+No feature, enhancement, or operational shortcut shall compromise personnel safety or dependable tournament operation.
 
----
-
-# 12. Engineering Workflow
-
-BattleStation development follows this workflow:
-
-1. Brainstorm
-2. Review
-3. Document
-4. Commit to Git
-5. Implement
-6. Test
-7. Release
-
-Every major decision should follow this process.
+When engineering tradeoffs exist, the safer solution shall normally be preferred.
 
 ---
 
-# Guiding Question
+## 4. Simplicity Through Clarity
 
-When making a design decision, ask:
+BattleStation shall remain understandable.
 
-> **"Does this decision help BattleStation become a professional, reliable, and modular tournament management system?"**
+Systems should be decomposed into clear responsibilities with well-defined interfaces.
 
-If the answer is "yes," it is likely the correct direction.
+User interfaces shall present only the information necessary for the current user and task.
+
+Complex behavior should emerge through cooperation between simple components.
+
+---
+
+## 5. Modularity and Independence
+
+Hardware modules, software services, and supporting infrastructure shall remain modular whenever practical.
+
+Components shall communicate through documented interfaces while minimizing unnecessary coupling.
+
+Replacement or improvement of one component should not require redesign of unrelated components.
+
+---
+
+## 6. Standardization
+
+BattleStation shall favor standardized approaches whenever practical.
+
+Standardization improves:
+
+- Reliability
+- Maintainability
+- Serviceability
+- Repeatability
+- Training
+- Long-term engineering efficiency
+
+Standards should be established through documented engineering decisions rather than personal preference.
+
+---
+
+## 7. Documentation Before Implementation
+
+Significant engineering decisions shall be documented before implementation.
+
+Documentation serves as the constitutional authority for engineering work.
+
+Implementation follows the approved engineering baseline.
+
+---
+
+## 8. Verification Before Acceptance
+
+Engineering work shall be verified before acceptance.
+
+Acceptance shall be supported by objective engineering evidence rather than confidence or assumption.
+
+Verification demonstrates that the implementation satisfies the approved constitutional baseline.
+
+---
+
+## 9. Design for Evolution
+
+BattleStation shall support future growth without requiring unnecessary redesign.
+
+Expansion should preserve existing architectural responsibilities whenever practical.
+
+Future capabilities should be anticipated without delaying completion of Version 1.
+
+---
+
+## 10. Discovery Through Engineering
+
+BattleStation shall be developed through disciplined discovery.
+
+New architectural understanding shall be documented, reviewed, and incorporated into the engineering baseline when supported by objective evidence.
+
+Engineering maturity grows through continual discovery rather than speculation.
+
+# Engineering Conduct
+
+These Design Principles are intended to guide engineering judgment.
+
+They are not a substitute for documented requirements or architectural decisions.
+
+When engineering decisions are not explicitly defined by existing documentation, engineers should apply these principles to determine the most appropriate course of action.
+
+Engineering judgment should remain:
+
+- Objective
+- Traceable
+- Evidence-based
+- Consistent with the constitutional engineering baseline
+
+Whenever a decision reveals a previously undiscovered architectural responsibility or enduring engineering principle, that discovery should be documented and reviewed for inclusion within the constitutional engineering baseline.
+
+---
+
+# Design Principle Governance
+
+These Design Principles support every constitutional engineering document within the BattleStation repository.
+
+They shall be interpreted together with:
+
+- Requirements Specification
+- System Definition
+- Software Architecture
+- Wiring Architecture
+- Test Plan
+- Engineering Decision Records
+
+Requirements define expected behavior.
+
+Architecture assigns responsibility.
+
+Verification demonstrates compliance.
+
+Configuration Management preserves the approved engineering baseline.
+
+Design Principles guide engineering judgment throughout that process.
+
+---
+
+# Project Motto
+
+> **"BattleStation should look, feel, and operate like a professional event management system."**
+
+This statement represents the desired outcome of applying these Design Principles.
+
+Professional appearance is important.
+
+Professional engineering is essential.
+
+---
+
+# Related Documents
+
+- `00_Project_Charter.md`
+- `08_System_Definition.md`
+- `09_Requirements_Specification.md`
+- `10_Engineering_Decision_Records.md`
+- `12_Development_Roadmap.md`
+- `14_Software_Architecture.md`
+- `15_Wiring_Architecture.md`
+- `16_Test_Plan.md`
