@@ -319,7 +319,7 @@ These principles guide both BattleStation development and the long-term stewards
 - `00_Project_Charter.md`
 - `08_System_Definition.md`
 - `09_Requirements_Specification.md`
-- `10_Decision_Log.md`
+- `10_Engineering_Decision_Records.md`
 - `11_Project_Journal.md`
 - `13_Hardware_BOM.md`
 - `14_Software_Architecture.md`

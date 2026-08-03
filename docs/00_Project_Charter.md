@@ -848,13 +848,13 @@ BattleStation shall remain understandable, maintainable, and extensible without 
 - `09_Requirements_Specification.md`
 - `10_Decision_Log.md`
 - `11_Project_Journal.md`
-- `12_Development_Roadmap.md`
+- `12_Chapters.md`
 - `13_Hardware_BOM.md`
 - `14_Software_Architecture.md`
 - `15_Wiring_Architecture.md`
 - `16_Test_Plan.md`
-- `18_Chapter_1_Architecture_Review.md`
-- `19_Style_Guide.md`
+- `18_Architecture_Review.md`
+- `19_BattleStation_Style_Guide.md`
 - `20_Design_Principles.md`
 - `21_Coding_Standards.md`
 - `22_Interface_Standards.md`

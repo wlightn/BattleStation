@@ -271,7 +271,7 @@ Startup verification shall confirm:
 - No active critical faults exist.
 - Optional modules are identified when present.
 
-Startup verification results shall be communicated to BattleStation Application Services for presentation to the Battle Commander.
+Startup verification results shall be communicated to BattleStation Application Services for presentation to the Tournament Coordinator.
 
 Tournament operation shall not begin until startup verification has completed successfully or authorized operational procedures have been followed.
 
@@ -359,7 +359,7 @@ One or more Operational or Optional modules report warnings.
 
 Tournament operation may begin.
 
-Warnings shall be presented to the Battle Commander.
+Warnings shall be presented to the Tournament Coordinator.
 
 ---
 
@@ -378,7 +378,7 @@ Tournament operation shall remain disabled until the condition has been resolved
 
 # Optional Module Management
 
-BattleStation shall allow the Battle Commander to enable or disable monitoring of Optional modules.
+BattleStation shall allow the Tournament Coordinator to enable or disable monitoring of Optional modules.
 
 Disabled Optional modules shall:
 
@@ -394,7 +394,7 @@ This capability allows BattleStation to support events that intentionally deploy
 
 # Coordinator Acknowledgements
 
-The Battle Commander may acknowledge selected startup warnings.
+The Tournament Coordinator may acknowledge selected startup warnings.
 
 Acknowledgements shall:
 
@@ -500,7 +500,7 @@ The BattleStation Wiring Architecture shall:
 - `05_System_Modules.md`
 - `08_System_Definition.md`
 - `09_Requirements_Specification.md`
-- `10_Decision_Log.md`
+- `10_Engineering_Decision_Records.md`
 - `13_Hardware_BOM.md`
 - `14_Software_Architecture.md`
 - `16_Test_Plan.md`

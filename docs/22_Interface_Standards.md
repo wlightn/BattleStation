@@ -298,7 +298,7 @@ The interface exists to support dependable tournament operation.
 
 # Related Documents
 
-- `03_Version_Buckets.md`
+- `03_Version_Strategy.md`
 - `04_User_Roles.md`
 - `08_System_Definition.md`
 - `09_Requirements_Specification.md`

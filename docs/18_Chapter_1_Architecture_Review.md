@@ -379,7 +379,7 @@ Engineering reviews shall:
 
 - `00_Project_Charter.md`
 - `09_Requirements_Specification.md`
-- `10_Decision_Log.md`
+- `10_Engineering_Decision_Records.md`
 - `11_Project_Journal.md`
 - `12_Development_Roadmap.md`
 - `16_Test_Plan.md`

@@ -116,105 +116,9 @@ Operational validation confirms that the complete BattleStation system satisfies
 
 Operational Validation shall be completed before official tournament deployment.
 
-# Requirement Verification Traceability Matrix
+# Verification Matrix
 
-This matrix assigns constitutional verification ownership and method to every approved requirement. Detailed procedures and evidence identifiers remain implementation artifacts, but shall preserve these requirement identifiers and verification assignments.
-
-| Requirement | Requirement Title | Responsible Architectural Component | Verification Method | Planned Verification Level / Procedure Location |
-|---|---|---|---|---|
-| `RR-001` | Competitor Registration | Registration Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RR-002` | Multiple Robot Registration | Registration Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RR-003` | Driver Information | Registration Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RR-004` | Robot Information | Registration Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RR-005` | Robot Photographs | Registration Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RR-006` | Weapon Classification | Registration Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RR-007` | Custom Weapon Description | Registration Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RR-008` | Robot Weight | Registration Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RR-009` | Weight Limit Verification | Registration Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RR-010` | Event Check-In | Registration Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RR-011` | Future Measurement Integration | Registration Service | Analysis and Inspection | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `IR-001` | Inspection Status | Inspection Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `IR-002` | Tournament Eligibility | Inspection Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `IR-003` | Inspection Notes | Inspection Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `IR-004` | Class-Specific Requirements | Inspection Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `IR-005` | Inspection Approval | Inspection Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `IR-006` | Inspection Traceability | Inspection Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `BR-001` | Bracket Generation | Bracket Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `BR-002` | Initial Assignment | Bracket Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `BR-003` | Winner Advancement | Bracket Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `BR-004` | Loser Advancement | Bracket Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `BR-005` | Current Match | Bracket Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `BR-006` | Next Match | Bracket Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `BR-007` | Bracket Integrity | Bracket Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `BR-008` | Tournament Continuity | Bracket Service | Test and Demonstration | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `MR-001` | Driver Ready | Match Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `MR-002` | Match Countdown | Match Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `MR-003` | Official Match Timer | Match Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `MR-004` | Match Pause | Match Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `MR-005` | Match Resume | Match Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `MR-006` | Tap Out | Match Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `MR-007` | Match Completion | Match Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `MR-008` | Winner Recording | Match Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `MR-009` | Automatic Bracket Advancement | Match Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `MR-010` | Arena Reset | Match Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `MR-011` | Driver Notification | Match Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `MR-012` | Match State Logging | Match Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `MR-013` | Unstick Management | Match Service | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `SR-001` | Arena Door Monitoring | Safety Service / Core Controller | Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `SR-002` | Immediate Safety Response | Safety Service / Core Controller | Test and Demonstration | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `SR-003` | Safety Indication | Safety Service / Core Controller | Test and Demonstration | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `SR-004` | Safety Logging | Safety Service / Core Controller | Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `SR-005` | Safety Priority | Safety Service / Core Controller | Test and Demonstration | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `SR-006` | Safety Acknowledgement | Safety Service / Core Controller | Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `SR-007` | Safe Recovery | Safety Service / Core Controller | Test and Demonstration | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `PD-001` | Current Match | Public Display / Interface Services | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `PD-002` | Next Match | Public Display / Interface Services | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `PD-003` | Match Timer | Public Display / Interface Services | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `PD-004` | Tournament Status | Public Display / Interface Services | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `PD-005` | Arena Reset Timer | Public Display / Interface Services | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `PD-006` | Safety Information | Public Display / Interface Services | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `PD-007` | Operational Consistency | Public Display / Interface Services | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RP-001` | Tournament Standings | Reporting Services / Data Services | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RP-002` | Tournament Bracket | Reporting Services / Data Services | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RP-003` | Event Reports | Reporting Services / Data Services | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RP-004` | Event Archive | Reporting Services / Data Services | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `RP-005` | Historical Integrity | Reporting Services / Data Services | Demonstration and Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `AS-001` | Tournament Management | Application Services | Inspection and Test | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `AS-002` | Configuration Management | Application Services | Inspection and Test | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `AS-003` | Data Management | Application Services | Inspection and Test | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `AS-004` | Operator Interfaces | Application Services | Inspection and Test | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `AS-005` | Public Interfaces | Application Services | Inspection and Test | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `AS-006` | Startup Coordination | Application Services | Inspection and Test | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `AS-007` | Fault Reporting | Application Services | Inspection and Test | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `CR-001` | Module Discovery | BattleStation Core Controller | Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `CR-002` | Module Health | BattleStation Core Controller | Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `CR-003` | Hardware Coordination | BattleStation Core Controller | Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `CR-004` | Startup Verification | BattleStation Core Controller | Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `CR-005` | Hardware Status | BattleStation Core Controller | Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `CR-006` | Hardware Fault Reporting | BattleStation Core Controller | Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `CR-007` | Safe Shutdown | BattleStation Core Controller | Test and Demonstration | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `CM-001` | BattleStation Bus | Hardware Communication Service / BSBus | Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `CM-002` | Documented Interfaces | Hardware Communication Service / BSBus | Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `CM-003` | Modular Expansion | Hardware Communication Service / BSBus | Analysis and Inspection | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `CM-004` | Fault Isolation | Hardware Communication Service / BSBus | Test and Demonstration | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `CM-005` | Module Identification | Hardware Communication Service / BSBus | Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `CM-006` | Communication Health | Hardware Communication Service / BSBus | Test | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `CM-007` | Infrastructure Independence | Hardware Communication Service / BSBus | Analysis and Inspection | Level 1 / Level 2 / Level 3; detailed procedure in controlled implementation verification artifacts |
-| `OR-001` | Automatic Startup | Monitoring, Configuration, and Data Services | Test | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `OR-002` | Headless Operation | Monitoring, Configuration, and Data Services | Test | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `OR-003` | Operational Diagnostics | Monitoring, Configuration, and Data Services | Test | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `OR-004` | Fault Logging | Monitoring, Configuration, and Data Services | Test | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `OR-005` | Module Health Monitoring | Monitoring, Configuration, and Data Services | Test | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `OR-006` | Configuration Preservation | Monitoring, Configuration, and Data Services | Test | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `OR-007` | Service Recovery | Monitoring, Configuration, and Data Services | Test and Demonstration | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `OR-008` | Offline Operation | Monitoring, Configuration, and Data Services | Test and Demonstration | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-| `OR-009` | Authoritative Digital Operation | Monitoring, Configuration, and Data Services | Test and Demonstration | Level 1 / Level 2 / Level 4; detailed procedure in controlled implementation verification artifacts |
-
----
-
-# Component Verification Matrix
-
-The Component Verification Matrix identifies the primary verification objectives for each major BattleStation architectural component.
+The Verification Matrix identifies the primary verification objectives for each major BattleStation architectural component.
 
 Detailed verification procedures shall be maintained separately from this constitutional document.
 
@@ -460,7 +364,7 @@ Verify that:
 
 - All Critical modules are operational.
 - Operational and Optional module warnings are correctly identified.
-- Warnings are presented to the Battle Commander.
+- Warnings are presented to the Tournament Coordinator.
 
 Expected Result:
 
@@ -610,7 +514,7 @@ BattleStation verification shall:
 # Related Documents
 
 - `09_Requirements_Specification.md`
-- `10_Decision_Log.md`
+- `10_Engineering_Decision_Records.md`
 - `12_Development_Roadmap.md`
 - `13_Hardware_BOM.md`
 - `14_Software_Architecture.md`

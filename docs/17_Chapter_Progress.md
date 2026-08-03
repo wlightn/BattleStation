@@ -215,7 +215,7 @@ Engineering progress shall:
 # Related Documents
 
 - `12_Development_Roadmap.md`
-- `10_Decision_Log.md`
+- `10_Engineering_Decision_Records.md`
 - `11_Project_Journal.md`
 - `09_Requirements_Specification.md`
 - `20_Design_Principles.md`

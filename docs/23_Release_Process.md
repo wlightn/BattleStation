@@ -264,7 +264,7 @@ A release represents the approved state of the BattleStation System at a specifi
 # Related Documents
 
 - `09_Requirements_Specification.md`
-- `10_Decision_Log.md`
+- `10_Engineering_Decision_Records.md`
 - `12_Development_Roadmap.md`
 - `16_Test_Plan.md`
 - `18_Chapter_1_Architecture_Review.md`

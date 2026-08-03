@@ -181,4 +181,4 @@ Every official name shall have one meaning.
 - `09_Requirements_Specification.md`
 - `14_Software_Architecture.md`
 - `15_Wiring_Architecture.md`
-- `19_Style_Guide.md`
+- `19_BattleStation_Style_Guide.md`

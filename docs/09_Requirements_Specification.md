@@ -72,9 +72,6 @@ The identifier consists of:
 
 ```text
 <Category Prefix>-<Sequential Number>
-```
-
----
 
 # 2. Registration Requirements
 
@@ -327,12 +324,6 @@ BattleStation shall notify the competitors scheduled for the next match during t
 ## MR-012 — Match State Logging
 
 BattleStation shall record all official match-state transitions.
-
----
-
-## MR-013 — Unstick Management
-
-BattleStation shall support authorized unstick requests, record each request and disposition, and manage any resulting match-state transition in accordance with the approved Tournament Workflow and Match State Machine.
 
 ---
 
@@ -659,18 +650,6 @@ BattleStation shall preserve approved configuration information across normal sh
 ## OR-007 — Service Recovery
 
 BattleStation shall support orderly recovery of required services following expected operational interruptions.
-
----
-
-## OR-008 — Offline Operation
-
-BattleStation shall perform all Version 1 tournament operations without requiring Internet connectivity.
-
----
-
-## OR-009 — Authoritative Digital Operation
-
-BattleStation shall maintain the authoritative tournament bracket, match state, and event record without dependence on paper brackets or external spreadsheets.
 
 ---
 

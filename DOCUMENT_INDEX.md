@@ -82,7 +82,7 @@ Referenced by every engineering document.
 
 ---
 
-## 03 — Version Buckets
+## 03 — Version Strategy
 
 **Purpose**
 
@@ -90,7 +90,7 @@ Defines document, software, hardware, and release versioning.
 
 **Relationships**
 
-Supports Release Process and Decision Log.
+Supports Release Process and Engineering Decision Records.
 
 ---
 
@@ -168,7 +168,7 @@ Referenced by testing and implementation.
 
 ---
 
-## 10 — Decision Log
+## 10 — Engineering Decision Records
 
 **Purpose**
 
@@ -466,7 +466,7 @@ When searching for information:
   → Test Plan
 
 * **Why was a decision made?**
-  → Decision Log
+  → Engineering Decision Records
 
 * **How are releases performed?**
   → Release Process
