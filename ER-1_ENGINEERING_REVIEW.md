@@ -523,3 +523,5 @@ The architecture does not require redesign.
 The BattleStation Chapter 1 Constitutional Baseline demonstrates a coherent and implementable architecture and is suitable for Chapter 2 after correction of the single malformed Markdown fence identified by ER1-CA-001.
 
 After that correction receives a focused regression review, ER-1 should be closed and the baseline advanced to BR-1.
+
+ER-1 Status: CLOSED

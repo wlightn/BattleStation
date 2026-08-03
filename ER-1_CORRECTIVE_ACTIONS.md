@@ -57,6 +57,6 @@ The regression reviewer shall verify:
 | Item | Value |
 |---|---|
 
-Implemented Commit | <COMMIT_SHA>
+Implemented Commit | 216eed9
 Regression Review | PASS
 Final Disposition | Closed
