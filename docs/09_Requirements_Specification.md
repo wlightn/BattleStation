@@ -72,6 +72,7 @@ The identifier consists of:
 
 ```text
 <Category Prefix>-<Sequential Number>
+```
 
 # 2. Registration Requirements
 
